@@ -4,30 +4,31 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Search, MapPin, Calendar, Star, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { apiClient } from "@/lib/api"
+import { Destination, BlogPost, HeroSlide, SeasonalPick } from "@/lib/types"
 import "./globals.css"
 
-const heroSlides = [
+const heroSlides: HeroSlide[] = [
   {
     id: 1,
-    image: "/my-app/public/pexels-shaani-sewwandi-1401278-2937148.jpg",
+    image: "/pexels-shaani-sewwandi-1401278-2937148.jpg",
     title: "Discover Paradise",
     subtitle: "Experience the magic of Sri Lanka",
   },
   {
     id: 2,
-    image: "/my-app/public/pexels-srkportraits-10710560.jpg",
+    image: "/pexels-srkportraits-10710560.jpg",
     title: "Ancient Wonders",
     subtitle: "Explore 2,500 years of history",
   },
   {
     id: 3,
-    image: "/my-app/public/pexels-freestockpro-320260 (1).jpg",
+    image: "/pexels-freestockpro-320260 (1).jpg",
     title: "Tropical Beaches",
     subtitle: "Relax on pristine golden shores",
   },
 ]
 
-const seasonalPicks = [
+const seasonalPicks: SeasonalPick[] = [
   {
     id: 1,
     title: "Monsoon Magic",
@@ -53,10 +54,11 @@ const seasonalPicks = [
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [featuredDestinations, setFeaturedDestinations] = useState([])
-  const [journalPreviews, setJournalPreviews] = useState([])
+  const [featuredDestinations, setFeaturedDestinations] = useState<Destination[]>([])
+  const [journalPreviews, setJournalPreviews] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
+  const [isPaused, setIsPaused] = useState(false)
 
   useEffect(() => {
     fetchData()
@@ -67,11 +69,11 @@ export default function HomePage() {
       setLoading(true)
 
       // Fetch featured destinations
-      const destinationsData = await apiClient.getDestinations({ limit: 8 })
+      const destinationsData = await apiClient.getDestinations({ limit: 8 }) as Destination[]
       setFeaturedDestinations(destinationsData)
 
       // Fetch recent blog posts
-      const blogData = await apiClient.getBlogPosts({ limit: 3 })
+      const blogData = await apiClient.getBlogPosts({ limit: 5 }) as BlogPost[]
       setJournalPreviews(blogData)
     } catch (error) {
       console.error("Failed to fetch data:", error)
@@ -80,13 +82,28 @@ export default function HomePage() {
     }
   }
 
+    // Add auto-slide functionality
+  useEffect(() => {
+    if (isPaused) return
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+    }, 10000)
+
+    return () => clearInterval(interval)
+  }, [isPaused])
+
+
   const nextSlide = () => {
+    console.log("Next slide clicked, current:", currentSlide)
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
   }
 
   const prevSlide = () => {
+    console.log("Prev slide clicked, current:", currentSlide)
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
   }
+
 
   // Add loading state for featured destinations section
   const renderFeaturedDestinations = () => {
@@ -157,13 +174,15 @@ export default function HomePage() {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 z-10"
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 z-50"
+          type="button"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 z-10"
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 z-50"
+          type="button"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
