@@ -32,7 +32,7 @@ SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
 SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
 
 # For SQLAlchemy connection to Supabase PostgreSQL
-DATABASE_URL = os.getenv("DATABASE_URL", f"postgresql://postgres:[YOUR-PASSWORD]@db.{SUPABASE_URL.split('//')[1].split('.')[0]}.supabase.co:5432/postgres")
+DATABASE_URL = os.getenv("DATABASE_URL", f"postgresql://postgres:[YOUR-PASSWORD]@db.rgbxpspefdnmzaknzdes.supabase.co:5432/postgres")
 
 # SQLAlchemy setup
 engine = None

@@ -360,3 +360,26 @@ message: "API key not valid. Please pass a valid API key."
 2025-07-25 17:38:14,470 - langgraph_flow.nodes.planner - INFO - Successfully generated complete travel plan
 2025-07-25 17:38:14,471 - langgraph_flow.planner_graph - INFO - Trip planning completed successfully
 2025-07-25 17:38:14,472 - router.planner - INFO - Successfully generated travel plan with ID: plan_20250725_173814
+2025-07-25 18:08:27,655 - router.planner - INFO - Starting travel planning for request: I want to explore the cultural heritage of Sri Lanka for 3 days. I'm interested in ancient temples, ...
+2025-07-25 18:08:27,674 - langgraph_flow.nodes.parser - INFO - Successfully parsed user input: ['cultural', 'adventure', 'historical', 'photography'], 3 days, couple
+2025-07-25 18:08:27,677 - vector_db - ERROR - Failed to connect to Qdrant: `host` param is not expected to contain protocol (http:// or https://). Try to use `url` parameter instead.
+2025-07-25 18:08:27,678 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-07-25 18:08:31,168 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-25 18:08:31,183 - vector_db - INFO - Using fallback text-based search
+2025-07-25 18:08:31,184 - langgraph_flow.nodes.retriever - INFO - Found 5 candidate attractions
+2025-07-25 18:08:31,806 - pear_ranker - WARNING - Neural model failed, using rule-based scoring: mat1 and mat2 shapes cannot be multiplied (5x397 and 394x256)
+2025-07-25 18:08:31,806 - pear_ranker - INFO - Ranked 5 attractions using rule-based model
+2025-07-25 18:08:31,807 - langgraph_flow.nodes.retriever - INFO - PEAR ranking selected 5 top attractions
+2025-07-25 18:08:31,809 - langgraph_flow.nodes.planner - INFO - Loading Gemini API key: AIzaSyBAlt...
+2025-07-25 18:08:31,809 - langgraph_flow.nodes.planner - INFO - Gemini LLM initialized successfully
+2025-07-25 18:08:31,809 - langgraph_flow.nodes.planner - INFO - Starting planning with 5 attractions for 3 days
+2025-07-25 18:08:33,591 - geo_clustering - INFO - DBSCAN clustering created 1 clusters from 5 attractions
+2025-07-25 18:08:33,591 - langgraph_flow.nodes.planner - INFO - Created 1 geographic clusters
+2025-07-25 18:08:33,591 - geo_clustering - INFO - Ranked 1 clusters by value per hour
+2025-07-25 18:08:33,591 - geo_clustering - INFO - Cluster 1: Central Province, Value/Hour: 0.10, Attractions: 5
+2025-07-25 18:08:33,592 - langgraph_flow.nodes.planner - INFO - Ranked clusters by value per hour
+2025-07-25 18:08:33,592 - langgraph_flow.nodes.planner - INFO - Selected 0 clusters for 3 days
+2025-07-25 18:08:39,625 - langgraph_flow.nodes.planner - INFO - LLM reasoning completed successfully
+2025-07-25 18:08:39,625 - langgraph_flow.nodes.planner - INFO - Successfully generated complete travel plan
+2025-07-25 18:08:39,626 - langgraph_flow.planner_graph - INFO - Trip planning completed successfully
+2025-07-25 18:08:39,634 - router.planner - INFO - Successfully generated travel plan with ID: plan_20250725_180839

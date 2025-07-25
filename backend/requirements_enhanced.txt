@@ -1,0 +1,17 @@
+# Enhanced Travel Recommendation Dependencies
+# Add these to your existing requirements.txt
+
+# Vector Database
+qdrant-client>=1.7.0
+
+# Transformer Models  
+sentence-transformers>=2.2.0
+
+# Neural Networks (if not already included)
+torch>=2.0.0
+
+# For embeddings and similarity search
+faiss-cpu>=1.7.0  # Alternative to Qdrant for local testing
+
+# Optional: For advanced embedding models
+transformers>=4.30.0
