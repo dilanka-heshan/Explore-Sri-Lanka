@@ -1,31 +1,6 @@
 """
-Enhanced Travel Recommendations API using Simplifi    try:
-        # Initialize the ranker
-        ranker = create_travel_ranke        t    try:
-        ranker = create_travel_ranker(
-            qdrant_url=QDRANT_URL,
-            qdrant_api_key=QDRANT_API_KEY,
-            colle    try:
-        # Test Qdrant connection
-        ranker = create_travel_ranker(
-            qdrant_url=QDRANT_URL,
-            qdrant_api_key=QDRANT_API_KEY,
-            collection_name=QDRANT_COLLECTION
-        )name=QDRANT_COLLECTION
-        )        ranker = create_travel_ranker(
-            qdrant_url=QDRANT_URL,
-            qdrant_api_key=QDRANT_API_KEY,
-            collection_name=QDRANT_COLLECTION
-        )
-        ranker = create_travel_ranker(
-            qdrant_url=QDRANT_URL,
-            qdrant_api_key=QDRANT_API_KEY,
-            collection_name=QDRANT_COLLECTION
-        )           qdrant_url=QDRANT_URL,
-            qdrant_api_key=QDRANT_API_KEY,
-            collection_name=QDRANT_COLLECTION
-        )R Ranker
-Direct integration with Qdrant vector database
+Enhanced Travel Recommendations API using Simplified PEAR Ranker
+Direct integration with Qdrant vector database and new transformer-based approach
 """
 
 from fastapi import APIRouter, HTTPException, Query
@@ -33,7 +8,7 @@ from pydantic import BaseModel, Field
 from typing import Dict, Any, Optional, List
 import logging
 import os
-from langgraph_flow.models.simplified_pear_ranker import create_travel_ranker
+from langgraph_flow.models.pear_ranker import create_pear_ranker
 
 logger = logging.getLogger(__name__)
 
@@ -49,273 +24,288 @@ if not QDRANT_URL.startswith("http"):
 elif ":" not in QDRANT_URL.split("://")[1]:
     QDRANT_URL = f"{QDRANT_URL}:{QDRANT_PORT}"
 
-router = APIRouter(prefix="/api/recommendations", tags=["Enhanced Recommendations"])
+router = APIRouter(prefix="/recommendations", tags=["Enhanced Recommendations"])
+
+# Global ranker instance
+ranker = None
+
+def get_ranker():
+    """Get or initialize the PEAR ranker"""
+    global ranker
+    if ranker is None:
+        try:
+            ranker = create_pear_ranker(
+                qdrant_url=QDRANT_URL,
+                qdrant_api_key=QDRANT_API_KEY,
+                collection_name=QDRANT_COLLECTION
+            )
+            logger.info("Successfully initialized PEAR ranker for recommendations API")
+        except Exception as e:
+            logger.error(f"Failed to initialize PEAR ranker: {e}")
+            raise HTTPException(status_code=500, detail="Failed to initialize recommendation system")
+    return ranker
+
+class TravelPreferences(BaseModel):
+    """User travel preferences for personalized recommendations"""
+    interests: List[str] = Field(..., description="List of user interests", example=["culture", "beaches", "temples"])
+    trip_type: Optional[str] = Field(None, description="Type of trip", example="cultural")
+    budget: Optional[str] = Field(None, description="Budget level", example="medium")
+    duration: Optional[int] = Field(None, description="Trip duration in days", example=7)
+    group_size: Optional[int] = Field(None, description="Number of travelers", example=2)
+    cultural_interest: Optional[int] = Field(None, description="Cultural interest level (1-10)", example=8)
+    adventure_level: Optional[int] = Field(None, description="Adventure preference level (1-10)", example=5)
+    nature_appreciation: Optional[int] = Field(None, description="Nature appreciation level (1-10)", example=7)
 
 class RecommendationRequest(BaseModel):
     """Request model for travel recommendations"""
-    user_query: str = Field(..., description="Natural language description of travel preferences", min_length=10, max_length=500)
-    trip_type: Optional[str] = Field(default="solo", description="Trip type: solo, couple, family, group")
-    budget: Optional[str] = Field(default="moderate", description="Budget level: budget, moderate, luxury")
-    interests: Optional[List[str]] = Field(default=[], description="List of user interests")
-    duration: Optional[int] = Field(default=7, description="Trip duration in days")
-    group_size: Optional[int] = Field(default=1, description="Number of travelers")
+    query: str = Field(..., description="Natural language description of what user wants to do", 
+                      example="I want to visit beautiful temples and beaches in Sri Lanka")
+    preferences: TravelPreferences
+    max_results: Optional[int] = Field(30, description="Maximum number of recommendations", example=30)
+
+class PlaceRecommendation(BaseModel):
+    """Recommendation response model"""
+    id: str
+    name: str
+    category: str
+    description: str
+    region: str
+    score: float = Field(..., description="Relevance score between 0 and 1")
+    neural_score: Optional[float] = Field(None, description="Neural network ranking score")
+    similarity_score: Optional[float] = Field(None, description="Vector similarity score")
 
 class RecommendationResponse(BaseModel):
     """Response model for recommendations"""
-    success: bool
+    query: str
     total_results: int
-    recommendations: List[Dict[str, Any]]
-    query_info: Dict[str, Any]
+    recommendations: List[PlaceRecommendation]
+    processing_time_ms: float
 
 @router.post("/places", response_model=RecommendationResponse)
-async def get_place_recommendations(request: RecommendationRequest):
+async def get_travel_recommendations(request: RecommendationRequest):
     """
-    Get travel place recommendations using transformer-based approach
+    Get personalized travel place recommendations using transformer-based ranking
     
-    This endpoint implements your vision:
-    1. User Query → Embedding
-    2. Vector DB Similarity Search (Qdrant)
-    3. Neural Ranking
-    4. Top 30 Results
+    This endpoint uses the new simplified PEAR ranker that:
+    1. Converts user query to embeddings
+    2. Searches vector database for similar places
+    3. Applies neural ranking for personalization
+    4. Returns top-scored recommendations
     """
+    import time
+    start_time = time.time()
+    
     try:
-        # Initialize the ranker
-        ranker = create_travel_ranker(
-            qdrant_url="https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io",  # Update with your Qdrant URL
-            collection_name="exploresl"      # Update with your collection name
-        )
+        # Get the ranker instance
+        pear_ranker = get_ranker()
         
-        # Prepare user context
+        # Convert preferences to user context
         user_context = {
-            "trip_type": request.trip_type,
-            "budget": request.budget,
-            "interests": request.interests,
-            "duration": request.duration,
-            "group_size": request.group_size
+            "interests": request.preferences.interests,
+            "trip_type": request.preferences.trip_type,
+            "budget": request.preferences.budget,
+            "duration": request.preferences.duration,
+            "group_size": request.preferences.group_size,
+            "cultural_interest": request.preferences.cultural_interest,
+            "adventure_level": request.preferences.adventure_level,
+            "nature_appreciation": request.preferences.nature_appreciation
         }
         
-        # Get recommendations
-        recommendations = ranker.get_recommendations(
-            user_query=request.user_query,
+        # Get recommendations from vector database
+        recommendations = pear_ranker.get_recommendations_from_vector_db(
+            user_query=request.query,
             user_context=user_context,
-            top_k=30,
-            vector_search_limit=100
+            top_k=request.max_results
         )
         
-        if not recommendations:
-            return RecommendationResponse(
-                success=True,
-                total_results=0,
-                recommendations=[],
-                query_info={
-                    "user_query": request.user_query,
-                    "user_context": user_context,
-                    "message": "No matching places found"
-                }
-            )
-        
-        # Format recommendations
-        formatted_recommendations = []
+        # Convert to response format
+        place_recommendations = []
         for rec in recommendations:
-            formatted_rec = {
-                "place_id": rec["id"],
-                "neural_score": round(rec["neural_score"], 3),
-                "similarity_score": round(rec["similarity_score"], 3),
-                "combined_score": round(rec["combined_score"], 3),
-                "place_info": rec["payload"]
-            }
-            formatted_recommendations.append(formatted_rec)
+            place_rec = PlaceRecommendation(
+                id=str(rec.get('id', '')),
+                name=rec.get('name', 'Unknown'),
+                category=rec.get('category', 'Unknown'),
+                description=rec.get('description', ''),
+                region=rec.get('region', 'Unknown'),
+                score=rec.get('pear_score', 0.0),
+                neural_score=rec.get('neural_score'),
+                similarity_score=rec.get('similarity_score')
+            )
+            place_recommendations.append(place_rec)
+        
+        processing_time = (time.time() - start_time) * 1000
+        
+        logger.info(f"Generated {len(place_recommendations)} recommendations in {processing_time:.2f}ms")
         
         return RecommendationResponse(
-            success=True,
-            total_results=len(recommendations),
-            recommendations=formatted_recommendations,
-            query_info={
-                "user_query": request.user_query,
-                "user_context": user_context,
-                "ranking_method": "transformer_neural_ranking"
-            }
+            query=request.query,
+            total_results=len(place_recommendations),
+            recommendations=place_recommendations,
+            processing_time_ms=processing_time
         )
         
     except Exception as e:
-        logger.error(f"Error in get_place_recommendations: {e}")
-        raise HTTPException(status_code=500, detail=f"Recommendation error: {str(e)}")
+        logger.error(f"Error generating recommendations: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to generate recommendations: {str(e)}")
 
 @router.get("/places/category/{category}")
 async def get_recommendations_by_category(
     category: str,
-    user_query: str = Query(..., description="User travel query"),
-    trip_type: str = Query("solo", description="Trip type"),
-    budget: str = Query("moderate", description="Budget level"),
-    interests: Optional[str] = Query(None, description="Comma-separated interests"),
-    top_k: int = Query(20, le=50, description="Number of recommendations")
+    query: str = Query(..., description="User query"),
+    interests: str = Query("", description="Comma-separated interests"),
+    budget: Optional[str] = Query(None, description="Budget level"),
+    max_results: int = Query(20, description="Maximum results")
 ):
     """Get recommendations filtered by category"""
     try:
-        ranker = create_travel_ranker(
-            qdrant_url="https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io",
-            collection_name="exploresl"
-        )
+        pear_ranker = get_ranker()
+        
+        # Parse interests
+        interest_list = [i.strip() for i in interests.split(",") if i.strip()] if interests else []
         
         user_context = {
-            "trip_type": trip_type,
-            "budget": budget,
-            "interests": interests.split(",") if interests else [],
+            "interests": interest_list,
+            "budget": budget
         }
         
-        recommendations = ranker.search_by_category(
-            user_query=user_query,
+        # Use the ranker's category search
+        recommendations = pear_ranker.search_by_category(
+            user_query=query,
             user_context=user_context,
             category_filter=category,
-            top_k=top_k
+            top_k=max_results
         )
         
+        # Format response
+        formatted_recommendations = []
+        for rec in recommendations:
+            payload = rec.get('payload', {})
+            formatted_rec = {
+                "id": str(rec.get('id', '')),
+                "name": payload.get('name', 'Unknown'),
+                "category": payload.get('category', category),
+                "description": payload.get('description', ''),
+                "region": payload.get('region', 'Unknown'),
+                "score": rec.get('combined_score', 0.0)
+            }
+            formatted_recommendations.append(formatted_rec)
+        
         return {
-            "success": True,
             "category": category,
-            "total_results": len(recommendations),
-            "recommendations": recommendations
+            "query": query,
+            "total_results": len(formatted_recommendations),
+            "recommendations": formatted_recommendations
         }
         
     except Exception as e:
-        logger.error(f"Error in category recommendations: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error getting category recommendations: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to get recommendations: {str(e)}")
 
 @router.get("/places/region/{region}")
 async def get_recommendations_by_region(
     region: str,
-    user_query: str = Query(..., description="User travel query"),
-    trip_type: str = Query("solo", description="Trip type"),
-    budget: str = Query("moderate", description="Budget level"),
-    interests: Optional[str] = Query(None, description="Comma-separated interests"),
-    top_k: int = Query(20, le=50, description="Number of recommendations")
+    query: str = Query(..., description="User query"),
+    interests: str = Query("", description="Comma-separated interests"),
+    budget: Optional[str] = Query(None, description="Budget level"),
+    max_results: int = Query(20, description="Maximum results")
 ):
     """Get recommendations filtered by region"""
     try:
-        ranker = create_travel_ranker(
-            qdrant_url="https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io",
-            collection_name="exploresl"
-        )
+        pear_ranker = get_ranker()
+        
+        # Parse interests
+        interest_list = [i.strip() for i in interests.split(",") if i.strip()] if interests else []
         
         user_context = {
-            "trip_type": trip_type,
-            "budget": budget,
-            "interests": interests.split(",") if interests else [],
+            "interests": interest_list,
+            "budget": budget
         }
         
-        recommendations = ranker.search_by_region(
-            user_query=user_query,
-            user_context=user_context,
-            region_filter=region,
-            top_k=top_k
-        )
-        
-        return {
-            "success": True,
-            "region": region,
-            "total_results": len(recommendations),
-            "recommendations": recommendations
-        }
-        
-    except Exception as e:
-        logger.error(f"Error in region recommendations: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-@router.get("/places/{place_id}/similar")
-async def get_similar_places(
-    place_id: str,
-    top_k: int = Query(10, le=20, description="Number of similar places")
-):
-    """Get places similar to a specific place"""
-    try:
-        ranker = create_travel_ranker(
-            qdrant_url="https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io",
-            collection_name="exploresl"
-        )
-        similar_places = ranker.get_similar_places(place_id, top_k)
-        
-        return {
-            "success": True,
-            "base_place_id": place_id,
-            "total_results": len(similar_places),
-            "similar_places": similar_places
-        }
-        
-    except Exception as e:
-        logger.error(f"Error in similar places: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-@router.post("/quick-search")
-async def quick_search(
-    query: str = Query(..., description="Quick search query"),
-    top_k: int = Query(10, le=30, description="Number of results")
-):
-    """
-    Quick search endpoint for simple queries
-    """
-    try:
-        ranker = create_travel_ranker(
-            qdrant_url="https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io",
-            collection_name="exploresl"
-        )
-        
-        # Simple user context for quick search
-        user_context = {
-            "trip_type": "solo",
-            "budget": "moderate",
-            "interests": []
-        }
-        
-        recommendations = ranker.get_recommendations(
+        # Use the ranker's region search
+        recommendations = pear_ranker.search_by_region(
             user_query=query,
             user_context=user_context,
-            top_k=top_k,
-            vector_search_limit=50
+            region_filter=region,
+            top_k=max_results
         )
         
+        # Format response
+        formatted_recommendations = []
+        for rec in recommendations:
+            payload = rec.get('payload', {})
+            formatted_rec = {
+                "id": str(rec.get('id', '')),
+                "name": payload.get('name', 'Unknown'),
+                "category": payload.get('category', 'Unknown'),
+                "description": payload.get('description', ''),
+                "region": payload.get('region', region),
+                "score": rec.get('combined_score', 0.0)
+            }
+            formatted_recommendations.append(formatted_rec)
+        
         return {
-            "success": True,
+            "region": region,
             "query": query,
-            "total_results": len(recommendations),
-            "places": [
-                {
-                    "id": rec["id"],
-                    "score": rec["combined_score"],
-                    **rec["payload"]
-                }
-                for rec in recommendations
-            ]
+            "total_results": len(formatted_recommendations),
+            "recommendations": formatted_recommendations
         }
         
     except Exception as e:
-        logger.error(f"Error in quick search: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error getting region recommendations: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to get recommendations: {str(e)}")
+
+@router.get("/similar/{place_id}")
+async def get_similar_places(
+    place_id: str,
+    max_results: int = Query(10, description="Maximum number of similar places")
+):
+    """Get places similar to a given place"""
+    try:
+        pear_ranker = get_ranker()
+        
+        similar_places = pear_ranker.get_similar_places(
+            place_id=place_id,
+            top_k=max_results
+        )
+        
+        # Format response
+        formatted_places = []
+        for place in similar_places:
+            payload = place.get('payload', {})
+            formatted_place = {
+                "id": str(place.get('id', '')),
+                "name": payload.get('name', 'Unknown'),
+                "category": payload.get('category', 'Unknown'),
+                "description": payload.get('description', ''),
+                "region": payload.get('region', 'Unknown'),
+                "similarity_score": place.get('similarity_score', 0.0)
+            }
+            formatted_places.append(formatted_place)
+        
+        return {
+            "reference_place_id": place_id,
+            "total_results": len(formatted_places),
+            "similar_places": formatted_places
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting similar places: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to get similar places: {str(e)}")
 
 @router.get("/health")
 async def health_check():
-    """Health check for the recommendation service"""
+    """Health check endpoint for the recommendation system"""
     try:
-        # Test Qdrant connection
-        ranker = create_travel_ranker(
-            qdrant_url="https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io",
-            collection_name="exploresl"
-        )
-        
+        pear_ranker = get_ranker()
         return {
             "status": "healthy",
-            "service": "Enhanced Travel Recommendations",
-            "features": [
-                "Transformer-based embeddings",
-                "Qdrant vector database",
-                "Neural ranking",
-                "Real-time recommendations"
-            ],
-            "database": "connected"
+            "system": "Enhanced Recommendations API",
+            "ranker_type": "Simplified PEAR (Transformer-based)",
+            "vector_database": "Qdrant Cloud",
+            "collection": QDRANT_COLLECTION
         }
-        
     except Exception as e:
         return {
             "status": "unhealthy",
-            "error": str(e),
-            "database": "disconnected"
+            "error": str(e)
         }
