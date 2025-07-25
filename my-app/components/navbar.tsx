@@ -4,32 +4,42 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X, ChevronDown } from "lucide-react"
-
-const navigation = [
-  { name: "Home", href: "/" },
-  {
-    name: "Destinations",
-    href: "/destinations",
-    dropdown: [
-      { name: "All Destinations", href: "/destinations" },
-      { name: "Beaches", href: "/destinations?category=beaches" },
-      { name: "Mountains", href: "/destinations?category=mountains" },
-      { name: "Cultural Sites", href: "/destinations?category=cultural" },
-    ],
-  },
-  { name: "Experiences", href: "/experiences" },
-  { name: "Plan Trip", href: "/planning" },
-  { name: "Journal", href: "/journal" },
-  { name: "Media", href: "/media" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
-]
+import { useDestinationTypes } from "@/lib/hooks/useDestinationTypes"
+import { NavigationItem } from "@/lib/types/ui"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const pathname = usePathname()
+  const { destinationTypes, loading } = useDestinationTypes()
+
+  // Create dynamic navigation with destination types from database
+  const navigation: NavigationItem[] = [
+    { name: "Home", href: "/" },
+    {
+      name: "Destinations",
+      href: "/destinations",
+      dropdown: [
+        { name: "All Destinations", href: "/destinations" },
+        // Show loading state or fallback categories
+        ...(loading ? [
+          { name: "Cultural", href: "/destinations?category=cultural" },
+          { name: "Beach", href: "/destinations?category=beach" },
+          { name: "Nature", href: "/destinations?category=nature" },
+          { name: "Wildlife", href: "/destinations?category=wildlife" },
+          { name: "Adventure", href: "/destinations?category=adventure" },
+        ] : destinationTypes.map(type => ({
+          name: type,
+          href: `/destinations?category=${type.toLowerCase()}`
+        })))
+      ],
+    },
+    { name: "Experiences", href: "/experiences" },
+    { name: "Journal", href: "/journal" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,7 +75,7 @@ export default function Navbar() {
                     onMouseEnter={() => setActiveDropdown(item.name)}
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
-                    <button className="flex items-center space-x-1 text-gray-700 hover:text-teal-600 transition-colors duration-200 font-medium">
+                    <button className="flex items-center space-x-1 text-gray-900 hover:text-teal-600 transition-colors duration-200 font-medium">
                       <span>{item.name}</span>
                       <ChevronDown className="w-4 h-4" />
                     </button>
@@ -75,7 +85,7 @@ export default function Navbar() {
                           <Link
                             key={dropdownItem.name}
                             href={dropdownItem.href}
-                            className="block px-4 py-2 text-gray-700 hover:text-teal-600 hover:bg-gray-50 transition-colors duration-200"
+                            className="block px-4 py-2 text-gray-900 hover:text-teal-600 hover:bg-gray-50 transition-colors duration-200"
                           >
                             {dropdownItem.name}
                           </Link>
@@ -86,7 +96,7 @@ export default function Navbar() {
                 ) : (
                   <Link
                     href={item.href}
-                    className={`text-gray-700 hover:text-teal-600 transition-colors duration-200 font-medium ${
+                    className={`text-gray-900 hover:text-teal-600 transition-colors duration-200 font-medium ${
                       pathname === item.href ? "text-teal-600" : ""
                     }`}
                   >

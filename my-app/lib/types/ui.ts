@@ -30,7 +30,7 @@ export interface NavigationItem {
   name: string
   href: string
   icon?: string
-  children?: NavigationItem[]
+  dropdown?: NavigationItem[]
 }
 
 export interface SocialLink {

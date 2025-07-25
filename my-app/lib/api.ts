@@ -52,6 +52,10 @@ class ApiClient {
     return this.request(`/api/destinations?${searchParams}`)
   }
 
+  async getDestinationTypes() {
+    return this.request(`/api/destinations/types`)
+  }
+
   async getDestinationBySlug(slug: string) {
     return this.request(`/api/destinations/${slug}`)
   }
