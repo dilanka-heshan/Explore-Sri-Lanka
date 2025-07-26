@@ -124,3 +124,204 @@
 2025-07-26 10:41:08,770 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
 2025-07-26 10:41:08,771 - router.clustered_recommendations - INFO - Found 30 attractions
 2025-07-26 10:41:08,772 - router.clustered_recommendations - INFO - Generated 30 simple recommendations in 6403.28ms
+2025-07-26 11:24:00,980 - googlemaps.client - INFO - API queries_quota: 60
+2025-07-26 11:24:00,981 - services.google_places_service - INFO - Google Maps client initialized successfully
+2025-07-26 11:24:02,379 - services.google_places_service - INFO - Found 1 PlaceType.RESTAURANT recommendations near (5.9485, 80.4585)
+2025-07-26 11:24:02,388 - router.google_places - ERROR - Error searching places: 1 validation error for PlaceSearchResponse
+places.0
+  Input should be a valid dictionary or instance of PlaceRecommendation [type=model_type, input_value=PlaceRecommendation(name=...02M'], distance_km=0.42), input_type=PlaceRecommendation]
+    For further information visit https://errors.pydantic.dev/2.11/v/model_type
+2025-07-26 11:27:41,439 - googlemaps.client - INFO - API queries_quota: 60
+2025-07-26 11:27:41,440 - services.google_places_service - INFO - Google Maps client initialized successfully
+2025-07-26 11:27:42,694 - services.google_places_service - INFO - Found 1 PlaceType.RESTAURANT recommendations near (5.9485, 80.4585)
+2025-07-26 11:31:12,104 - googlemaps.client - INFO - API queries_quota: 60
+2025-07-26 11:31:12,105 - services.google_places_service - INFO - Google Maps client initialized successfully
+2025-07-26 11:31:12,105 - router.places_enhancement - INFO - Enhanced cluster plan with 0 places
+2025-07-26 11:32:56,087 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (7.2906, 80.6337)
+2025-07-26 11:32:56,088 - services.google_places_service - ERROR - Error finding places near (7.2906, 80.6337): 'str' object has no attribute 'value'
+2025-07-26 11:32:56,088 - services.google_places_service - ERROR - Error finding places near (7.2906, 80.6337): 'str' object has no attribute 'value'
+2025-07-26 11:32:56,088 - services.google_places_service - ERROR - Error finding places near (7.2906, 80.6337): 'str' object has no attribute 'value'
+2025-07-26 11:32:56,088 - services.google_places_service - ERROR - Error finding places near (7.2906, 80.6337): 'str' object has no attribute 'value'
+2025-07-26 11:32:56,089 - services.google_places_service - ERROR - Error finding places near (7.2906, 80.6337): 'str' object has no attribute 'value'
+2025-07-26 11:32:56,089 - services.places_enhancement_service - INFO - Added 0 places for Day 1
+2025-07-26 11:32:56,089 - router.places_enhancement - INFO - Enhanced cluster plan with 0 places
+2025-07-26 11:50:01,252 - googlemaps.client - INFO - API queries_quota: 60
+2025-07-26 11:50:01,253 - services.google_places_service - INFO - Google Maps client initialized successfully
+2025-07-26 11:50:01,253 - router.integrated_planning - INFO - Creating integrated plan for query: I want to explore ancient temples and cultural sites in Sri Lanka
+2025-07-26 11:50:01,253 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 11:50:01,254 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I want to explore ancient temples and cultural sites in Sri Lanka'
+2025-07-26 11:50:01,254 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 11:50:04,737 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 11:50:05,357 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 11:50:06,449 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 11:50:06,465 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 11:50:07,255 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 11:50:08,471 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 11:50:08,523 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 11:50:08,524 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 11:50:08,526 - services.coordinate_service - INFO - Loading 95 Sri Lankan travel locations
+2025-07-26 11:50:08,526 - services.coordinate_service - INFO - Successfully loaded 91 locations with coordinates
+2025-07-26 11:50:08,527 - services.coordinate_service - INFO - Categories available: ['Beaches', 'Adventure Activities', 'Wildlife Sanctuaries', 'Scenic Train Rides', 'Cultural Heritage Sites', 'Waterfalls', 'Mountains', 'Rainforests', 'Tea Plantations', 'Surfing Spots', 'Hiking Trails', 'Historical Temples', 'Colonial Architecture', 'Ayurvedic Spas', 'Luxury Resorts', 'Whale Watching Locations', 'Cultural Festivals', 'Village Life Experiences']
+2025-07-26 11:50:08,527 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 11:50:08,527 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 11:53:19,848 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 9 balanced clusters
+2025-07-26 11:53:19,848 - router.clustered_recommendations - INFO - Created 9 geographic clusters
+2025-07-26 11:53:19,848 - langgraph_flow.models.geo_clustering - INFO - Ranked 9 clusters by balanced value score
+2025-07-26 11:53:19,849 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Southern Province, Value/Hour: 0.22, Attractions: 4, Balanced: True, Travel Time: 72.7min
+2025-07-26 11:53:19,849 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Central Province, Value/Hour: 0.21, Attractions: 3, Balanced: True, Travel Time: 47.7min
+2025-07-26 11:53:19,849 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Central Province, Value/Hour: 0.19, Attractions: 3, Balanced: False, Travel Time: 128.1min
+2025-07-26 11:53:19,852 - router.clustered_recommendations - INFO - Generated 3-day clustered plan in 198597.23ms
+2025-07-26 11:53:19,865 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 11:53:19,865 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (6.862825, 79.8684)
+2025-07-26 11:53:19,865 - services.google_places_service - ERROR - Error finding places near (6.862825, 79.8684): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,865 - services.google_places_service - ERROR - Error finding places near (6.862825, 79.8684): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,866 - services.google_places_service - ERROR - Error finding places near (6.862825, 79.8684): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,866 - services.google_places_service - ERROR - Error finding places near (6.862825, 79.8684): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,866 - services.google_places_service - ERROR - Error finding places near (6.862825, 79.8684): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,866 - services.places_enhancement_service - INFO - Added 0 places for Day 1
+2025-07-26 11:53:19,866 - services.places_enhancement_service - INFO - Getting place recommendations for Day 2 at (7.949066666666667, 80.71973333333334)
+2025-07-26 11:53:19,867 - services.google_places_service - ERROR - Error finding places near (7.949066666666667, 80.71973333333334): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,867 - services.google_places_service - ERROR - Error finding places near (7.949066666666667, 80.71973333333334): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,867 - services.google_places_service - ERROR - Error finding places near (7.949066666666667, 80.71973333333334): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,867 - services.google_places_service - ERROR - Error finding places near (7.949066666666667, 80.71973333333334): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,868 - services.google_places_service - ERROR - Error finding places near (7.949066666666667, 80.71973333333334): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,868 - services.places_enhancement_service - INFO - Added 0 places for Day 2
+2025-07-26 11:53:19,868 - services.places_enhancement_service - INFO - Getting place recommendations for Day 3 at (8.050400000000002, 80.64183333333334)
+2025-07-26 11:53:19,868 - services.google_places_service - ERROR - Error finding places near (8.050400000000002, 80.64183333333334): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,869 - services.google_places_service - ERROR - Error finding places near (8.050400000000002, 80.64183333333334): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,869 - services.google_places_service - ERROR - Error finding places near (8.050400000000002, 80.64183333333334): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,869 - services.google_places_service - ERROR - Error finding places near (8.050400000000002, 80.64183333333334): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,870 - services.google_places_service - ERROR - Error finding places near (8.050400000000002, 80.64183333333334): 'str' object has no attribute 'value'
+2025-07-26 11:53:19,870 - services.places_enhancement_service - INFO - Added 0 places for Day 3
+2025-07-26 11:53:19,871 - integrated_planning - INFO - Integrating results...
+2025-07-26 11:53:19,871 - router.integrated_planning - INFO - Successfully created integrated plan with 3 enhancements
+2025-07-26 12:00:24,436 - router.integrated_planning - INFO - Creating integrated plan for query: I want to explore sri lankan beaches and sun shine
+2025-07-26 12:00:24,436 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 12:00:24,436 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I want to explore sri lankan beaches and sun shine'
+2025-07-26 12:00:24,437 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:00:31,277 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 12:00:31,894 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 12:00:33,005 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 12:00:33,006 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 12:00:33,373 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 12:00:34,526 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 12:00:34,565 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 12:00:34,566 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 12:00:34,566 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 12:00:34,567 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 12:02:38,708 - langgraph_flow.models.geo_clustering - WARNING - OpenRouteService API failed: 'distance', using haversine fallback
+2025-07-26 12:03:52,943 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 9 balanced clusters
+2025-07-26 12:03:52,943 - router.clustered_recommendations - INFO - Created 9 geographic clusters
+2025-07-26 12:03:52,943 - langgraph_flow.models.geo_clustering - INFO - Ranked 9 clusters by balanced value score
+2025-07-26 12:03:52,944 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Central Province, Value/Hour: 0.21, Attractions: 3, Balanced: True, Travel Time: 78.5min
+2025-07-26 12:03:52,944 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Uva Province, Value/Hour: 0.19, Attractions: 3, Balanced: False, Travel Time: 135.7min
+2025-07-26 12:03:52,944 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Southern Province, Value/Hour: 0.18, Attractions: 3, Balanced: False, Travel Time: 172.8min
+2025-07-26 12:03:52,945 - router.clustered_recommendations - INFO - Generated 2-day clustered plan in 208508.96ms
+2025-07-26 12:03:52,957 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 12:03:52,957 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (6.816733333333333, 80.63816666666666)
+2025-07-26 12:03:52,957 - services.google_places_service - ERROR - Error finding places near (6.816733333333333, 80.63816666666666): 'str' object has no attribute 'value'
+2025-07-26 12:03:52,958 - services.google_places_service - ERROR - Error finding places near (6.816733333333333, 80.63816666666666): 'str' object has no attribute 'value'
+2025-07-26 12:03:52,958 - services.google_places_service - ERROR - Error finding places near (6.816733333333333, 80.63816666666666): 'str' object has no attribute 'value'
+2025-07-26 12:03:52,959 - services.google_places_service - ERROR - Error finding places near (6.816733333333333, 80.63816666666666): 'str' object has no attribute 'value'
+2025-07-26 12:03:52,959 - services.google_places_service - ERROR - Error finding places near (6.816733333333333, 80.63816666666666): 'str' object has no attribute 'value'
+2025-07-26 12:03:52,959 - services.places_enhancement_service - INFO - Added 0 places for Day 1
+2025-07-26 12:03:52,960 - services.places_enhancement_service - INFO - Getting place recommendations for Day 2 at (7.0914, 81.51146666666666)
+2025-07-26 12:03:52,960 - services.google_places_service - ERROR - Error finding places near (7.0914, 81.51146666666666): 'str' object has no attribute 'value'
+2025-07-26 12:03:52,960 - services.google_places_service - ERROR - Error finding places near (7.0914, 81.51146666666666): 'str' object has no attribute 'value'
+2025-07-26 12:03:52,961 - services.google_places_service - ERROR - Error finding places near (7.0914, 81.51146666666666): 'str' object has no attribute 'value'
+2025-07-26 12:03:52,961 - services.google_places_service - ERROR - Error finding places near (7.0914, 81.51146666666666): 'str' object has no attribute 'value'
+2025-07-26 12:03:52,961 - services.google_places_service - ERROR - Error finding places near (7.0914, 81.51146666666666): 'str' object has no attribute 'value'
+2025-07-26 12:03:52,962 - services.places_enhancement_service - INFO - Added 0 places for Day 2
+2025-07-26 12:03:52,962 - integrated_planning - INFO - Integrating results...
+2025-07-26 12:03:52,962 - router.integrated_planning - INFO - Successfully created integrated plan with 1 enhancements
+2025-07-26 12:15:39,674 - googlemaps.client - INFO - API queries_quota: 60
+2025-07-26 12:15:39,675 - services.google_places_service - INFO - Google Maps client initialized successfully
+2025-07-26 12:15:39,676 - router.integrated_planning - INFO - Creating integrated plan for query: I want to explore sri lankan beaches , like mirissa 
+2025-07-26 12:15:39,676 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 12:15:39,676 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I want to explore sri lankan beaches , like mirissa '
+2025-07-26 12:15:39,677 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 12:15:45,082 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 12:15:45,702 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 12:15:47,260 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 12:15:47,262 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 12:15:47,722 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 12:15:49,376 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 12:15:49,413 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 12:15:49,414 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 12:15:49,415 - services.coordinate_service - INFO - Loading 95 Sri Lankan travel locations
+2025-07-26 12:15:49,416 - services.coordinate_service - INFO - Successfully loaded 91 locations with coordinates
+2025-07-26 12:15:49,416 - services.coordinate_service - INFO - Categories available: ['Beaches', 'Adventure Activities', 'Wildlife Sanctuaries', 'Scenic Train Rides', 'Cultural Heritage Sites', 'Waterfalls', 'Mountains', 'Rainforests', 'Tea Plantations', 'Surfing Spots', 'Hiking Trails', 'Historical Temples', 'Colonial Architecture', 'Ayurvedic Spas', 'Luxury Resorts', 'Whale Watching Locations', 'Cultural Festivals', 'Village Life Experiences']
+2025-07-26 12:15:49,416 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 12:15:49,416 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 12:18:06,593 - langgraph_flow.models.geo_clustering - WARNING - OpenRouteService API failed: 'distance', using haversine fallback
+2025-07-26 12:18:56,780 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 8 balanced clusters
+2025-07-26 12:18:56,781 - router.clustered_recommendations - INFO - Created 8 geographic clusters
+2025-07-26 12:18:56,781 - langgraph_flow.models.geo_clustering - INFO - Ranked 8 clusters by balanced value score
+2025-07-26 12:18:56,781 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Sabaragamuwa Province, Value/Hour: 0.17, Attractions: 4, Balanced: False, Travel Time: 278.8min
+2025-07-26 12:18:56,782 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Southern Province, Value/Hour: 0.16, Attractions: 4, Balanced: False, Travel Time: 373.2min
+2025-07-26 12:18:56,782 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Southern Province, Value/Hour: 0.15, Attractions: 4, Balanced: False, Travel Time: 366.5min
+2025-07-26 12:18:56,783 - router.clustered_recommendations - INFO - Generated 2-day clustered plan in 197107.38ms
+2025-07-26 12:18:56,796 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 12:18:56,796 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (6.425325, 80.94025)
+2025-07-26 12:18:58,506 - services.google_places_service - INFO - Found 1 PlaceType.RESTAURANT recommendations near (6.425325, 80.94025)
+2025-07-26 12:18:59,682 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.425325, 80.94025)
+2025-07-26 12:19:00,936 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.425325, 80.94025)
+2025-07-26 12:19:01,913 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (6.425325, 80.94025)
+2025-07-26 12:19:02,792 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (6.425325, 80.94025)
+2025-07-26 12:19:02,792 - services.places_enhancement_service - INFO - Added 1 places for Day 1
+2025-07-26 12:19:02,792 - services.places_enhancement_service - INFO - Getting place recommendations for Day 2 at (6.470924999999999, 80.4854)
+2025-07-26 12:19:03,840 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.470924999999999, 80.4854)
+2025-07-26 12:19:05,020 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.470924999999999, 80.4854)
+2025-07-26 12:19:06,116 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.470924999999999, 80.4854)
+2025-07-26 12:19:06,759 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (6.470924999999999, 80.4854)
+2025-07-26 12:19:07,360 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (6.470924999999999, 80.4854)
+2025-07-26 12:19:07,360 - services.places_enhancement_service - INFO - Added 0 places for Day 2
+2025-07-26 12:19:07,361 - integrated_planning - INFO - Integrating results...
+2025-07-26 12:19:07,361 - router.integrated_planning - INFO - Successfully created integrated plan with 1 enhancements
+2025-07-26 12:57:10,869 - __mp_main__ - WARNING - Some routers not available: attempted relative import beyond top-level package
+2025-07-26 12:57:10,964 - main - WARNING - Some routers not available: attempted relative import beyond top-level package
+2025-07-26 13:09:39,661 - __main__ - INFO - Starting Enhanced Travel Planner API...
+2025-07-26 13:16:45,534 - __main__ - INFO - Starting Enhanced Travel Planner API...
+2025-07-26 13:17:28,580 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 13:17:47,116 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 13:17:47,119 - services.auth_service - ERROR - User registration failed: bcrypt: no backends available -- recommend you install one (e.g. 'pip install bcrypt')
+2025-07-26 13:21:03,669 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 13:21:03,671 - services.auth_service - ERROR - User registration failed: bcrypt: no backends available -- recommend you install one (e.g. 'pip install bcrypt')
+2025-07-26 13:21:34,546 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 13:21:35,365 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Dev\Explore SL\Explore Sri Lanka\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-07-26 13:21:36,201 - httpx - INFO - HTTP Request: POST https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles "HTTP/2 400 Bad Request"
+2025-07-26 13:21:36,211 - services.auth_service - ERROR - User registration failed: {'message': "Could not find the 'bio' column of 'user_profiles' in the schema cache", 'code': 'PGRST204', 'hint': None, 'details': None}
+2025-07-26 13:27:24,030 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 13:27:24,046 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Dev\Explore SL\Explore Sri Lanka\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-07-26 13:27:24,511 - httpx - INFO - HTTP Request: POST https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles "HTTP/2 401 Unauthorized"
+2025-07-26 13:27:24,518 - services.auth_service - ERROR - User registration failed: {'message': 'new row violates row-level security policy for table "user_profiles"', 'code': '42501', 'hint': None, 'details': None}
+2025-07-26 13:28:57,898 - __main__ - INFO - Starting Enhanced Travel Planner API...
+2025-07-26 13:29:27,859 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 13:29:27,863 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Dev\Explore SL\Explore Sri Lanka\backend\venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-07-26 13:29:28,573 - httpx - INFO - HTTP Request: POST https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles "HTTP/2 401 Unauthorized"
+2025-07-26 13:29:28,574 - services.auth_service - ERROR - User registration failed: {'message': 'new row violates row-level security policy for table "user_profiles"', 'code': '42501', 'hint': None, 'details': None}
+2025-07-26 13:31:26,919 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 13:31:27,469 - httpx - INFO - HTTP Request: POST https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles "HTTP/2 201 Created"
+2025-07-26 13:31:27,471 - services.auth_service - INFO - Verification token for bhdilanka@gmail.com: PrExsPAGaZFK6OHqcHL_ha_UNVqo_mTSAUljF8sG97g
+2025-07-26 13:31:36,215 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 13:31:36,762 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 13:32:42,790 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 13:32:42,981 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 13:32:43,213 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 13:32:43,397 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 13:32:43,406 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}

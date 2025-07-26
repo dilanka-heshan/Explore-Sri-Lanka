@@ -36,3 +36,6 @@ aiohttp
 pandas
 python-multipart
 pydantic[email]
+
+# Google Maps Places API
+googlemaps>=4.10.0

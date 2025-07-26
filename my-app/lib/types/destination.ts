@@ -1,28 +1,29 @@
 export interface Destination {
-  id: string | number
+  id: string
   name: string
-  description: string
-  image: string
-  category: string
-  rating: number
-  region?: string
-  type?: string
-  province?: string
-  district?: string
-  location?: {
-    latitude: number
-    longitude: number
-  }
-  attractions?: string[]
-  bestTimeToVisit?: string
-  activities?: string[]
-  difficulty?: 'Easy' | 'Moderate' | 'Challenging'
-  duration?: string
-  cost?: {
-    budget: number
-    currency: string
-  }
-  tags?: string[]
+  slug: string
+  description?: string
+  long_description?: string
+  image_url?: string
+  gallery_images?: string[]
+  rating?: number
+  review_count?: number
+  region: string
+  destination_type: string
+  best_season?: string
+  highlights?: string[]
+  latitude?: number
+  longitude?: number
+  entry_fee?: number
+  opening_hours?: any
+  facilities?: string[]
+  nearby_attractions?: string[]
+  created_at: string
+  updated_at?: string
+
+  // Legacy support for existing components
+  image?: string
+  category?: string
 }
 
 export interface DestinationFilters {
@@ -37,6 +38,7 @@ export interface DestinationSearchParams {
   query?: string
   category?: string
   region?: string
+  destination_type?: string
   type?: string
   province?: string
   minRating?: number
@@ -44,6 +46,8 @@ export interface DestinationSearchParams {
   activities?: string[]
   page?: number
   limit?: number
+  offset?: number
+  search?: string
   sortBy?: 'rating' | 'name' | 'popularity'
   sortOrder?: 'asc' | 'desc'
 }

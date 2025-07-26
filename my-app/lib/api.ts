@@ -7,12 +7,21 @@ class ApiClient {
     this.baseURL = baseURL
   }
 
+  private getAuthToken(): string | null {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('authToken')
+    }
+    return null
+  }
+
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${this.baseURL}${endpoint}`
+    const token = this.getAuthToken()
 
     const config: RequestInit = {
       headers: {
         "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
         ...options.headers,
       },
       ...options,
@@ -22,7 +31,8 @@ class ApiClient {
       const response = await fetch(url, config)
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.detail || `HTTP error! status: ${response.status}`)
       }
 
       return await response.json()
@@ -30,6 +40,11 @@ class ApiClient {
       console.error("API request failed:", error)
       throw error
     }
+  }
+
+  // Health check
+  async healthCheck() {
+    return this.request("/health")
   }
 
   // Destinations
@@ -193,13 +208,45 @@ class ApiClient {
     return this.request(`/api/media?${searchParams}`)
   }
 
+  // Travel Planning
+  async planTrip(planningData: {
+    query: string
+    interests: string[]
+    trip_duration_days: number
+    budget_level: 'budget' | 'mid_range' | 'luxury'
+    max_attractions_per_day?: number
+    daily_travel_preference?: 'minimal' | 'moderate' | 'extensive'
+  }) {
+    return this.request("/clustered-recommendations/plan", {
+      method: "POST",
+      body: JSON.stringify(planningData),
+    })
+  }
+
+  // Integrated Planning (Enhanced)
+  async planTripIntegrated(planningData: {
+    query: string
+    interests: string[]
+    trip_duration_days: number
+    budget_level: 'budget' | 'mid_range' | 'luxury'
+    trip_type?: 'solo' | 'couple' | 'family' | 'group'
+    activity_level?: number
+    max_attractions_per_day?: number
+    daily_travel_preference?: 'minimal' | 'moderate' | 'extensive'
+    enable_google_places?: boolean
+    enable_llm_enhancement?: boolean
+  }) {
+    return this.request("/integrated-planning/plan", {
+      method: "POST",
+      body: JSON.stringify(planningData),
+    })
+  }
+
   // Search
   async searchContent(query: string, type?: string, limit = 10) {
     const searchParams = new URLSearchParams({ q: query, limit: limit.toString() })
-    if (type) {
-      searchParams.append("type", type)
-    }
-
+    if (type) searchParams.append('type', type)
+    
     return this.request(`/api/search?${searchParams}`)
   }
 }

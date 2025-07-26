@@ -11,10 +11,14 @@ from datetime import datetime
 
 # Import routers
 from router import planner
+from router import auth  # Authentication router for user management
 from router import chatbot, destinations, gallery, stories, newsletter, admin
 from router import admin_data  # New admin and data management router
 from router import clustered_recommendations  # Advanced geographic clustering
 from router import enhanced_recommendations  # Simple PEAR-based recommendations
+from router import google_places  # Google Places API integration
+from router import places_enhancement  # Places enhancement service
+from router import integrated_planning  # Integrated planning with modular enhancements
 
 # Configure logging
 logging.basicConfig(
@@ -39,6 +43,15 @@ app = FastAPI(
     - **Route Optimization**: Optimal travel routes using OpenRouteService
     - **Vector Search**: Semantic similarity search with Qdrant
     - **LLM Reasoning**: Final plan enhancement using Gemini AI
+    - **Google Places Integration**: Restaurant and accommodation recommendations
+    - **Modular Enhancements**: Extensible system for weather, transport, and more
+    
+    **Key Endpoints:**
+    - `/integrated-planning/plan` - 🌟 **NEW**: All-in-one endpoint with modular enhancements
+    - `/integrated-planning/plan-with-places` - Simplified clustering + places
+    - `/clustered-recommendations/plan` - Get clustered attractions (fast)
+    - `/places-enhancement/enhance-cluster` - Add places to existing plan
+    - `/google-places/search` - Direct Google Places search
     
     **7-Step Planning Process:**
     1. Parse user preferences from natural language
@@ -79,6 +92,8 @@ app.include_router(planner.router)
 
 # Optional: Include other routers when implemented
 try:
+    from router import auth  # Import auth router
+    app.include_router(auth.router)  # Add auth router
     app.include_router(chatbot.router)
     app.include_router(destinations.router)
     app.include_router(gallery.router)
@@ -88,6 +103,9 @@ try:
     app.include_router(admin_data.router)  # New admin and data management endpoints
     app.include_router(clustered_recommendations.router)  # Advanced geographic clustering
     app.include_router(enhanced_recommendations.router)  # Simple PEAR-based recommendations
+    app.include_router(google_places.router)  # Google Places API integration
+    app.include_router(places_enhancement.router)  # Places enhancement service
+    app.include_router(integrated_planning.router)  # Integrated planning with modular enhancements
 except Exception as e:
     logger.warning(f"Some routers not available: {e}")
 
@@ -103,10 +121,15 @@ async def root():
             "Geographic clustering",
             "Route optimization",
             "Vector similarity search",
-            "LLM-enhanced recommendations"
+            "LLM-enhanced recommendations",
+            "Google Places restaurant suggestions",
+            "Hotel and accommodation recommendations",
+            "Budget-aware place filtering"
         ],
         "endpoints": {
             "planning": "/api/planning/plan_trip",
+            "clustered_planning": "/clustered-recommendations/plan",
+            "google_places": "/google-places",
             "health": "/health",
             "docs": "/docs",
             "redoc": "/redoc"
@@ -129,7 +152,8 @@ async def health_check():
             "geo_clustering": "✓ Ready",
             "route_optimizer": "✓ Ready",
             "vector_db": "⚠ Check configuration",
-            "llm": "⚠ Check API keys"
+            "llm": "⚠ Check API keys",
+            "google_places": "⚠ Check Google Maps API key"
         }
     }
 
@@ -160,6 +184,10 @@ async def api_info():
             "llm_reasoning": {
                 "description": "Final plan enhancement and gap filling",
                 "model": "Google Gemini Pro"
+            },
+            "google_places_integration": {
+                "description": "Restaurant and accommodation recommendations",
+                "technology": "Google Places API with budget filtering"
             }
         },
         "supported_preferences": [
@@ -173,8 +201,10 @@ async def api_info():
         "output_includes": [
             "Day-by-day detailed itinerary",
             "Optimized travel routes",
-            "Hotel recommendations",
-            "Restaurant suggestions", 
+            "Hotel recommendations with ratings and prices",
+            "Restaurant suggestions for breakfast/lunch/dinner", 
+            "Cafe recommendations for breaks",
+            "Budget-appropriate place filtering",
             "Local tips and cultural insights",
             "Packing suggestions",
             "Weather considerations",
