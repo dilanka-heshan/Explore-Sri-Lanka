@@ -39,3 +39,10 @@ pydantic[email]
 
 # Google Maps Places API
 googlemaps>=4.10.0
+
+# PDF Generation
+reportlab>=4.0.0
+Pillow>=10.0.0  # For image processing in PDFs
+
+# HTTP Requests (for fetching images, maps, etc.)
+requests>=2.31.0

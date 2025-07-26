@@ -18,8 +18,8 @@ export default function Navbar() {
   const [showProfileModal, setShowProfileModal] = useState(false)
   const [authModalTab, setAuthModalTab] = useState<'login' | 'register'>('login')
   const pathname = usePathname()
-  const { destinationTypes, loading } = useDestinationTypes()
-  const { user, logout, isAuthenticated } = useAuth()
+  const { destinationTypes, loading: typesLoading } = useDestinationTypes()
+  const { user, logout, isAuthenticated, loading: authLoading } = useAuth()
 
   // Create dynamic navigation with destination types from database
   const navigation: NavigationItem[] = [
@@ -30,7 +30,7 @@ export default function Navbar() {
       dropdown: [
         { name: "All Destinations", href: "/destinations" },
         // Show loading state or fallback categories
-        ...(loading ? [
+        ...(typesLoading ? [
           { name: "Cultural", href: "/destinations?category=cultural" },
           { name: "Beach", href: "/destinations?category=beach" },
           { name: "Nature", href: "/destinations?category=nature" },
@@ -42,8 +42,10 @@ export default function Navbar() {
         })))
       ],
     },
+    { name: "Places", href: "/places" },
     { name: "Experiences", href: "/experiences" },
     { name: "Planning", href: "/planning" },
+    { name: "My Trips", href: "/my-trips" },
     { name: "Journal", href: "/journal" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
@@ -127,82 +129,86 @@ export default function Navbar() {
 
           {/* Auth Section */}
           <div className="hidden lg:flex items-center space-x-4">
-            {isAuthenticated && user ? (
-              <div className="relative">
-                <button
-                  onClick={() => setActiveDropdown(activeDropdown === 'user' ? null : 'user')}
-                  className="flex items-center space-x-2 px-3 py-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
-                >
-                  <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
-                    {user.avatar_url ? (
-                      <img src={user.avatar_url} alt={user.full_name} className="w-8 h-8 rounded-full object-cover" />
-                    ) : (
-                      user.full_name.charAt(0).toUpperCase()
-                    )}
-                  </div>
-                  <span className="font-medium text-gray-700">{user.full_name.split(' ')[0]}</span>
-                  <ChevronDown className="w-4 h-4 text-gray-500" />
-                </button>
+            {!authLoading ? (
+              isAuthenticated && user ? (
+                <div className="relative">
+                  <button
+                    onClick={() => setActiveDropdown(activeDropdown === 'user' ? null : 'user')}
+                    className="flex items-center space-x-2 px-3 py-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+                  >
+                    <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                      {user.avatar_url ? (
+                        <img src={user.avatar_url} alt={user.full_name} className="w-8 h-8 rounded-full object-cover" />
+                      ) : (
+                        user.full_name.charAt(0).toUpperCase()
+                      )}
+                    </div>
+                    <span className="font-medium text-gray-700">{user.full_name.split(' ')[0]}</span>
+                    <ChevronDown className="w-4 h-4 text-gray-500" />
+                  </button>
 
-                {/* User Dropdown */}
-                {activeDropdown === 'user' && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50">
-                    <button
-                      onClick={() => {
-                        setShowProfileModal(true)
-                        setActiveDropdown(null)
-                      }}
-                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2"
-                    >
-                      <User className="w-4 h-4" />
-                      <span>My Profile</span>
-                    </button>
-                    <Link
-                      href="/favorites"
-                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2"
-                      onClick={() => setActiveDropdown(null)}
-                    >
-                      <Heart className="w-4 h-4" />
-                      <span>Favorites</span>
-                    </Link>
-                    <Link
-                      href="/my-trips"
-                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2"
-                      onClick={() => setActiveDropdown(null)}
-                    >
-                      <Settings className="w-4 h-4" />
-                      <span>My Trips</span>
-                    </Link>
-                    <hr className="my-2" />
-                    <button
-                      onClick={handleLogout}
-                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-2"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      <span>Sign Out</span>
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                <button
-                  onClick={() => handleAuthClick('login')}
-                  className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-teal-600 transition-colors duration-200"
-                >
-                  <LogIn className="w-4 h-4" />
-                  <span>Sign In</span>
-                </button>
-                <button
-                  onClick={() => handleAuthClick('register')}
-                  className="btn-primary"
-                >
-                  Sign Up
-                </button>
-              </div>
-            )}
-
-            {/* CTA Button */}
+                  {/* User Dropdown */}
+                  {activeDropdown === 'user' && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50">
+                      <button
+                        onClick={() => {
+                          setShowProfileModal(true)
+                          setActiveDropdown(null)
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2"
+                      >
+                        <User className="w-4 h-4" />
+                        <span>My Profile</span>
+                      </button>
+                      <Link
+                        href="/favorites"
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        <Heart className="w-4 h-4" />
+                        <span>Favorites</span>
+                      </Link>
+                      <Link
+                        href="/my-trips"
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        <Settings className="w-4 h-4" />
+                        <span>My Trips</span>
+                      </Link>
+                      <hr className="my-2" />
+                      <button
+                        onClick={handleLogout}
+                        className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-2"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Sign Out</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center space-x-3">
+                  <button
+                    onClick={() => handleAuthClick('login')}
+                    className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-teal-600 transition-colors duration-200"
+                  >
+                    <LogIn className="w-4 h-4" />
+                    <span>Sign In</span>
+                  </button>
+                  <button
+                    onClick={() => handleAuthClick('register')}
+                    className="btn-primary"
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              )) : (
+                <div className="flex items-center space-x-3">
+                  <div className="w-16 h-10 bg-gray-200 rounded animate-pulse"></div>
+                  <div className="w-20 h-10 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+              )}            {/* CTA Button */}
             <Link href="/planning" className="btn-secondary">
               Plan Your Trip
             </Link>
@@ -251,7 +257,8 @@ export default function Navbar() {
 
               {/* Mobile Auth Section */}
               <div className="px-4 pt-4 border-t border-gray-100 mt-4">
-                {isAuthenticated && user ? (
+                {!authLoading ? (
+                  isAuthenticated && user ? (
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3 pb-3">
                       <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-semibold">
@@ -324,6 +331,11 @@ export default function Navbar() {
                     >
                       Sign Up
                     </button>
+                  </div>
+                )) : (
+                  <div className="space-y-3">
+                    <div className="w-full h-10 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="w-full h-10 bg-gray-200 rounded animate-pulse"></div>
                   </div>
                 )}
                 <div className="pt-3">

@@ -19,6 +19,7 @@ from router import enhanced_recommendations  # Simple PEAR-based recommendations
 from router import google_places  # Google Places API integration
 from router import places_enhancement  # Places enhancement service
 from router import integrated_planning  # Integrated planning with modular enhancements
+from router import my_trips  # My Trips management for saved travel plans
 
 # Configure logging
 logging.basicConfig(
@@ -106,6 +107,7 @@ try:
     app.include_router(google_places.router)  # Google Places API integration
     app.include_router(places_enhancement.router)  # Places enhancement service
     app.include_router(integrated_planning.router)  # Integrated planning with modular enhancements
+    app.include_router(my_trips.router)  # My Trips management for saved travel plans
 except Exception as e:
     logger.warning(f"Some routers not available: {e}")
 

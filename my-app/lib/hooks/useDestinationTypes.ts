@@ -22,6 +22,17 @@ export function useDestinationTypes(): UseDestinationTypesReturn {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch destination types')
       console.error('Error fetching destination types:', err)
+      // Fallback to static destination types if API fails
+      setDestinationTypes([
+        'Cultural',
+        'Beach',
+        'Nature',
+        'Wildlife', 
+        'Adventure',
+        'Historical',
+        'Religious',
+        'Mountain'
+      ])
     } finally {
       setLoading(false)
     }

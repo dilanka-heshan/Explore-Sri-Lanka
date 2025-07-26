@@ -325,3 +325,509 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2025-07-26 13:32:43,213 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
 2025-07-26 13:32:43,397 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
 2025-07-26 13:32:43,406 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 13:52:34,093 - googlemaps.client - INFO - API queries_quota: 60
+2025-07-26 13:52:34,099 - services.google_places_service - INFO - Google Maps client initialized successfully
+2025-07-26 13:52:35,253 - services.google_places_service - INFO - Found 10 PlaceType.RESTAURANT recommendations near (7.2906, 80.6337)
+2025-07-26 13:52:35,599 - services.google_places_service - INFO - Found 10 PlaceType.RESTAURANT recommendations near (7.2906, 80.6337)
+2025-07-26 13:54:11,662 - router.integrated_planning - INFO - Creating integrated plan for query: I want to explore adventures hiking experience with nature 
+2025-07-26 13:54:11,664 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 13:54:11,669 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I want to explore adventures hiking experience with nature '
+2025-07-26 13:54:11,695 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 13:54:16,556 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 13:54:17,252 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 13:54:18,237 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 13:54:18,269 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 13:54:19,104 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 13:54:20,723 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 13:54:20,795 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 13:54:20,797 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 13:54:20,800 - services.coordinate_service - INFO - Loading 95 Sri Lankan travel locations
+2025-07-26 13:54:20,800 - services.coordinate_service - INFO - Successfully loaded 91 locations with coordinates
+2025-07-26 13:54:20,800 - services.coordinate_service - INFO - Categories available: ['Beaches', 'Adventure Activities', 'Wildlife Sanctuaries', 'Scenic Train Rides', 'Cultural Heritage Sites', 'Waterfalls', 'Mountains', 'Rainforests', 'Tea Plantations', 'Surfing Spots', 'Hiking Trails', 'Historical Temples', 'Colonial Architecture', 'Ayurvedic Spas', 'Luxury Resorts', 'Whale Watching Locations', 'Cultural Festivals', 'Village Life Experiences']
+2025-07-26 13:54:20,801 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 13:54:20,802 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 13:54:22,374 - langgraph_flow.models.geo_clustering - WARNING - OpenRouteService API failed: 'distance', using haversine fallback
+2025-07-26 13:57:16,401 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 11 balanced clusters
+2025-07-26 13:57:16,401 - router.clustered_recommendations - INFO - Created 11 geographic clusters
+2025-07-26 13:57:16,401 - langgraph_flow.models.geo_clustering - INFO - Ranked 11 clusters by balanced value score
+2025-07-26 13:57:16,418 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Central Province, Value/Hour: 0.25, Attractions: 2, Balanced: True, Travel Time: 11.8min
+2025-07-26 13:57:16,418 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Southern Province, Value/Hour: 0.25, Attractions: 2, Balanced: True, Travel Time: 71.1min
+2025-07-26 13:57:16,418 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Central Province, Value/Hour: 0.23, Attractions: 3, Balanced: True, Travel Time: 48.8min
+2025-07-26 13:57:16,433 - router.clustered_recommendations - INFO - Generated 3-day clustered plan in 184758.50ms
+2025-07-26 13:57:16,457 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 13:57:16,459 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (6.9582999999999995, 81.07499999999999)
+2025-07-26 13:57:18,165 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.9582999999999995, 81.07499999999999)
+2025-07-26 13:57:19,374 - services.google_places_service - INFO - Found 3 PlaceType.RESTAURANT recommendations near (6.9582999999999995, 81.07499999999999)
+2025-07-26 13:57:20,435 - services.google_places_service - INFO - Found 1 PlaceType.RESTAURANT recommendations near (6.9582999999999995, 81.07499999999999)
+2025-07-26 13:57:21,116 - services.google_places_service - INFO - Found 2 PlaceType.LODGING recommendations near (6.9582999999999995, 81.07499999999999)
+2025-07-26 13:57:21,772 - services.google_places_service - INFO - Found 3 PlaceType.CAFE recommendations near (6.9582999999999995, 81.07499999999999)
+2025-07-26 13:57:21,774 - services.places_enhancement_service - INFO - Added 9 places for Day 1
+2025-07-26 13:57:21,775 - services.places_enhancement_service - INFO - Getting place recommendations for Day 2 at (6.1875, 80.41460000000001)
+2025-07-26 13:57:22,813 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.1875, 80.41460000000001)
+2025-07-26 13:57:24,004 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.1875, 80.41460000000001)
+2025-07-26 13:57:25,164 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.1875, 80.41460000000001)
+2025-07-26 13:57:25,791 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (6.1875, 80.41460000000001)
+2025-07-26 13:57:25,955 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (6.1875, 80.41460000000001)
+2025-07-26 13:57:25,955 - services.places_enhancement_service - INFO - Added 0 places for Day 2
+2025-07-26 13:57:25,956 - services.places_enhancement_service - INFO - Getting place recommendations for Day 3 at (7.3963, 80.7333)
+2025-07-26 13:57:27,075 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.3963, 80.7333)
+2025-07-26 13:57:28,363 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.3963, 80.7333)
+2025-07-26 13:57:29,512 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.3963, 80.7333)
+2025-07-26 13:57:30,125 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (7.3963, 80.7333)
+2025-07-26 13:57:30,688 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (7.3963, 80.7333)
+2025-07-26 13:57:30,688 - services.places_enhancement_service - INFO - Added 0 places for Day 3
+2025-07-26 13:57:30,690 - integrated_planning - INFO - Integrating results...
+2025-07-26 13:57:30,690 - router.integrated_planning - INFO - Successfully created integrated plan with 1 enhancements
+2025-07-26 14:05:54,446 - services.google_places_service - INFO - Found 10 PlaceType.RESTAURANT recommendations near (7.2906, 80.6337)
+2025-07-26 14:05:54,697 - services.google_places_service - INFO - Found 10 PlaceType.RESTAURANT recommendations near (7.2906, 80.6337)
+2025-07-26 14:06:14,085 - services.google_places_service - INFO - Found 10 PlaceType.RESTAURANT recommendations near (7.2906, 80.6337)
+2025-07-26 14:08:30,107 - __main__ - INFO - Starting Enhanced Travel Planner API...
+2025-07-26 14:09:03,040 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 14:09:03,674 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 14:09:22,689 - googlemaps.client - INFO - API queries_quota: 60
+2025-07-26 14:09:22,690 - services.google_places_service - INFO - Google Maps client initialized successfully
+2025-07-26 14:09:23,549 - services.google_places_service - INFO - Found 10 PlaceType.RESTAURANT recommendations near (7.2906, 80.6337)
+2025-07-26 14:09:23,796 - services.google_places_service - INFO - Found 10 PlaceType.RESTAURANT recommendations near (7.2906, 80.6337)
+2025-07-26 14:10:32,490 - services.google_places_service - INFO - Found 10 PlaceType.RESTAURANT recommendations near (7.2906, 80.6337)
+2025-07-26 14:10:33,136 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 14:10:33,445 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 14:10:33,698 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 14:10:33,923 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 14:10:33,932 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 14:11:02,982 - services.google_places_service - INFO - Found 10 PlaceType.RESTAURANT recommendations near (7.2906, 80.6337)
+2025-07-26 15:47:08,581 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 15:47:09,276 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 15:48:17,386 - router.integrated_planning - INFO - Creating integrated plan for query: romantic nature with vilage life , hiking
+2025-07-26 15:48:17,388 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 15:48:17,394 - router.clustered_recommendations - INFO - Getting recommendations for query: 'romantic nature with vilage life , hiking'
+2025-07-26 15:48:17,426 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 15:48:22,027 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 15:48:22,791 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 15:48:23,865 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 15:48:23,928 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 15:48:24,958 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 15:48:26,098 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 15:48:26,173 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 15:48:26,174 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 15:48:26,182 - services.coordinate_service - INFO - Loading 95 Sri Lankan travel locations
+2025-07-26 15:48:26,182 - services.coordinate_service - INFO - Successfully loaded 91 locations with coordinates
+2025-07-26 15:48:26,182 - services.coordinate_service - INFO - Categories available: ['Beaches', 'Adventure Activities', 'Wildlife Sanctuaries', 'Scenic Train Rides', 'Cultural Heritage Sites', 'Waterfalls', 'Mountains', 'Rainforests', 'Tea Plantations', 'Surfing Spots', 'Hiking Trails', 'Historical Temples', 'Colonial Architecture', 'Ayurvedic Spas', 'Luxury Resorts', 'Whale Watching Locations', 'Cultural Festivals', 'Village Life Experiences']
+2025-07-26 15:48:26,183 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 15:48:26,183 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 15:48:27,847 - langgraph_flow.models.geo_clustering - WARNING - OpenRouteService API failed: 'distance', using haversine fallback
+2025-07-26 15:51:17,661 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 8 balanced clusters
+2025-07-26 15:51:17,662 - router.clustered_recommendations - INFO - Created 8 geographic clusters
+2025-07-26 15:51:17,663 - langgraph_flow.models.geo_clustering - INFO - Ranked 8 clusters by balanced value score
+2025-07-26 15:51:17,664 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Central Province, Value/Hour: 0.19, Attractions: 3, Balanced: False, Travel Time: 135.3min
+2025-07-26 15:51:17,664 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Central Province, Value/Hour: 0.20, Attractions: 4, Balanced: False, Travel Time: 185.9min
+2025-07-26 15:51:17,664 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Central Province, Value/Hour: 0.19, Attractions: 4, Balanced: False, Travel Time: 203.5min
+2025-07-26 15:51:17,680 - router.clustered_recommendations - INFO - Generated 2-day clustered plan in 180274.48ms
+2025-07-26 15:51:17,700 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 15:51:17,701 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (7.2944666666666675, 81.16109999999999)
+2025-07-26 15:51:19,936 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.2944666666666675, 81.16109999999999)
+2025-07-26 15:51:21,039 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.2944666666666675, 81.16109999999999)
+2025-07-26 15:51:22,131 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.2944666666666675, 81.16109999999999)
+2025-07-26 15:51:22,728 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (7.2944666666666675, 81.16109999999999)
+2025-07-26 15:51:22,950 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (7.2944666666666675, 81.16109999999999)
+2025-07-26 15:51:22,952 - services.places_enhancement_service - INFO - Added 0 places for Day 1
+2025-07-26 15:51:22,952 - services.places_enhancement_service - INFO - Getting place recommendations for Day 2 at (6.893, 80.8006)
+2025-07-26 15:51:24,026 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.893, 80.8006)
+2025-07-26 15:51:25,179 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.893, 80.8006)
+2025-07-26 15:51:26,269 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.893, 80.8006)
+2025-07-26 15:51:26,867 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (6.893, 80.8006)
+2025-07-26 15:51:27,362 - services.google_places_service - INFO - Found 2 PlaceType.CAFE recommendations near (6.893, 80.8006)
+2025-07-26 15:51:27,363 - services.places_enhancement_service - INFO - Added 2 places for Day 2
+2025-07-26 15:51:27,366 - integrated_planning - INFO - Integrating results...
+2025-07-26 15:51:27,369 - router.integrated_planning - INFO - Successfully created integrated plan with 1 enhancements
+2025-07-26 16:01:29,581 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:01:29,956 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:01:30,310 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:01:30,553 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 16:01:30,565 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 16:01:42,402 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 16:01:43,023 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:02:50,006 - router.integrated_planning - INFO - Creating integrated plan for query: I want to explore nature with hiking trekking and village life
+2025-07-26 16:02:50,007 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 16:02:50,009 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I want to explore nature with hiking trekking and village life'
+2025-07-26 16:02:50,027 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 16:02:54,449 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 16:02:55,121 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 16:02:56,088 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 16:02:56,099 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 16:02:56,870 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 16:02:57,922 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 16:02:57,988 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 16:02:57,989 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 16:02:57,990 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 16:02:57,990 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 16:06:00,932 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 8 balanced clusters
+2025-07-26 16:06:00,933 - router.clustered_recommendations - INFO - Created 8 geographic clusters
+2025-07-26 16:06:00,943 - langgraph_flow.models.geo_clustering - INFO - Ranked 8 clusters by balanced value score
+2025-07-26 16:06:00,944 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Central Province, Value/Hour: 0.18, Attractions: 3, Balanced: False, Travel Time: 162.8min
+2025-07-26 16:06:00,944 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Central Province, Value/Hour: 0.17, Attractions: 4, Balanced: False, Travel Time: 389.1min
+2025-07-26 16:06:00,945 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Sabaragamuwa Province, Value/Hour: 0.15, Attractions: 4, Balanced: False, Travel Time: 369.1min
+2025-07-26 16:06:00,953 - router.clustered_recommendations - INFO - Generated 1-day clustered plan in 190939.22ms
+2025-07-26 16:06:00,967 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 16:06:00,968 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (7.011133333333333, 80.85553333333333)
+2025-07-26 16:06:02,261 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.011133333333333, 80.85553333333333)
+2025-07-26 16:06:03,496 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.011133333333333, 80.85553333333333)
+2025-07-26 16:06:04,558 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.011133333333333, 80.85553333333333)
+2025-07-26 16:06:05,005 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (7.011133333333333, 80.85553333333333)
+2025-07-26 16:06:05,274 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (7.011133333333333, 80.85553333333333)
+2025-07-26 16:06:05,275 - services.places_enhancement_service - INFO - Added 0 places for Day 1
+2025-07-26 16:06:05,275 - integrated_planning - INFO - Integrating results...
+2025-07-26 16:06:05,275 - router.integrated_planning - INFO - Successfully created integrated plan with 1 enhancements
+2025-07-26 16:34:58,098 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:34:58,554 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:34:58,817 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:34:59,045 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 16:34:59,053 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 16:35:16,133 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 16:35:16,760 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:36:27,411 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:36:27,801 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:36:29,038 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:36:29,294 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 16:36:29,297 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 16:36:44,229 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 16:36:44,655 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:38:21,955 - router.integrated_planning - INFO - Creating integrated plan for query: with beautiful nature and village expolre and hiking
+2025-07-26 16:38:21,956 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 16:38:21,960 - router.clustered_recommendations - INFO - Getting recommendations for query: 'with beautiful nature and village expolre and hiking'
+2025-07-26 16:38:21,976 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 16:38:25,985 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 16:38:26,627 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 16:38:27,722 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 16:38:27,739 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 16:38:28,529 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 16:38:29,799 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 16:38:29,870 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 16:38:29,871 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 16:38:29,871 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 16:38:29,872 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 16:41:01,735 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:41:01,932 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:41:02,164 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:41:02,346 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 16:41:02,347 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 16:41:17,047 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 16:41:17,421 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:41:20,829 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:41:21,024 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:41:21,244 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 16:41:21,415 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 16:41:21,415 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 16:41:32,332 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 10 balanced clusters
+2025-07-26 16:41:32,332 - router.clustered_recommendations - INFO - Created 10 geographic clusters
+2025-07-26 16:41:32,333 - langgraph_flow.models.geo_clustering - INFO - Ranked 10 clusters by balanced value score
+2025-07-26 16:41:32,333 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Sabaragamuwa Province, Value/Hour: 0.19, Attractions: 3, Balanced: False, Travel Time: 158.2min
+2025-07-26 16:41:32,333 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Central Province, Value/Hour: 0.18, Attractions: 3, Balanced: False, Travel Time: 182.1min
+2025-07-26 16:41:32,333 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Uva Province, Value/Hour: 0.17, Attractions: 3, Balanced: False, Travel Time: 188.1min
+2025-07-26 16:41:32,336 - router.clustered_recommendations - INFO - Generated 1-day clustered plan in 190374.91ms
+2025-07-26 16:41:32,350 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 16:41:32,351 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (6.6132333333333335, 80.64296666666667)
+2025-07-26 16:41:33,613 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.6132333333333335, 80.64296666666667)
+2025-07-26 16:41:34,713 - services.google_places_service - INFO - Found 1 PlaceType.RESTAURANT recommendations near (6.6132333333333335, 80.64296666666667)
+2025-07-26 16:41:35,769 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.6132333333333335, 80.64296666666667)
+2025-07-26 16:41:36,186 - services.google_places_service - INFO - Found 1 PlaceType.LODGING recommendations near (6.6132333333333335, 80.64296666666667)
+2025-07-26 16:41:36,417 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (6.6132333333333335, 80.64296666666667)
+2025-07-26 16:41:36,425 - services.places_enhancement_service - INFO - Added 2 places for Day 1
+2025-07-26 16:41:36,425 - integrated_planning - INFO - Integrating results...
+2025-07-26 16:41:36,426 - router.integrated_planning - INFO - Successfully created integrated plan with 1 enhancements
+2025-07-26 16:44:01,362 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 16:44:01,846 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:27:48,691 - __main__ - INFO - Starting Enhanced Travel Planner API...
+2025-07-26 17:28:22,805 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 17:28:23,429 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:28:28,302 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:28:28,315 - router.my_trips - ERROR - Error getting travel plan stats: 'UserResponse' object is not subscriptable
+2025-07-26 17:28:28,506 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:28:28,507 - router.my_trips - ERROR - Error getting travel plan stats: 'UserResponse' object is not subscriptable
+2025-07-26 17:28:28,743 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:28:28,744 - router.my_trips - ERROR - Error retrieving travel plans: 'UserResponse' object is not subscriptable
+2025-07-26 17:28:28,939 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:28:28,941 - router.my_trips - ERROR - Error retrieving travel plans: 'UserResponse' object is not subscriptable
+2025-07-26 17:35:33,736 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:35:35,734 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:35:36,403 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:35:36,733 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 17:35:36,744 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 17:36:11,471 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 17:36:12,046 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:36:50,989 - googlemaps.client - INFO - API queries_quota: 60
+2025-07-26 17:36:50,990 - services.google_places_service - INFO - Google Maps client initialized successfully
+2025-07-26 17:36:50,991 - router.integrated_planning - INFO - Creating integrated plan for query: nature love explore wild life and village tour
+2025-07-26 17:36:50,991 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 17:36:50,992 - router.clustered_recommendations - INFO - Getting recommendations for query: 'nature love explore wild life and village tour'
+2025-07-26 17:36:50,994 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 17:36:59,197 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 17:36:59,958 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 17:37:01,456 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 17:37:01,493 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 17:37:02,369 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 17:37:03,488 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 17:37:03,583 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 17:37:03,584 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 17:37:03,588 - services.coordinate_service - INFO - Loading 95 Sri Lankan travel locations
+2025-07-26 17:37:03,588 - services.coordinate_service - INFO - Successfully loaded 91 locations with coordinates
+2025-07-26 17:37:03,588 - services.coordinate_service - INFO - Categories available: ['Beaches', 'Adventure Activities', 'Wildlife Sanctuaries', 'Scenic Train Rides', 'Cultural Heritage Sites', 'Waterfalls', 'Mountains', 'Rainforests', 'Tea Plantations', 'Surfing Spots', 'Hiking Trails', 'Historical Temples', 'Colonial Architecture', 'Ayurvedic Spas', 'Luxury Resorts', 'Whale Watching Locations', 'Cultural Festivals', 'Village Life Experiences']
+2025-07-26 17:37:03,589 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 17:37:03,590 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 17:40:52,623 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 9 balanced clusters
+2025-07-26 17:40:52,624 - router.clustered_recommendations - INFO - Created 9 geographic clusters
+2025-07-26 17:40:52,625 - langgraph_flow.models.geo_clustering - INFO - Ranked 9 clusters by balanced value score
+2025-07-26 17:40:52,626 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Central Province, Value/Hour: 0.22, Attractions: 3, Balanced: True, Travel Time: 59.2min
+2025-07-26 17:40:52,626 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Central Province, Value/Hour: 0.22, Attractions: 4, Balanced: True, Travel Time: 88.9min
+2025-07-26 17:40:52,626 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Central Province, Value/Hour: 0.20, Attractions: 3, Balanced: False, Travel Time: 112.9min
+2025-07-26 17:40:52,632 - router.clustered_recommendations - INFO - Generated 3-day clustered plan in 241637.36ms
+2025-07-26 17:40:52,645 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 17:40:52,646 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (6.828533333333333, 80.88216666666666)
+2025-07-26 17:40:54,488 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.828533333333333, 80.88216666666666)
+2025-07-26 17:40:55,805 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.828533333333333, 80.88216666666666)
+2025-07-26 17:40:56,915 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.828533333333333, 80.88216666666666)
+2025-07-26 17:40:57,365 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (6.828533333333333, 80.88216666666666)
+2025-07-26 17:40:57,819 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (6.828533333333333, 80.88216666666666)
+2025-07-26 17:40:57,819 - services.places_enhancement_service - INFO - Added 0 places for Day 1
+2025-07-26 17:40:57,820 - services.places_enhancement_service - INFO - Getting place recommendations for Day 2 at (6.8573, 80.856525)
+2025-07-26 17:40:58,947 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.8573, 80.856525)
+2025-07-26 17:41:00,426 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.8573, 80.856525)
+2025-07-26 17:41:01,572 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.8573, 80.856525)
+2025-07-26 17:41:02,116 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (6.8573, 80.856525)
+2025-07-26 17:41:02,570 - services.google_places_service - INFO - Found 1 PlaceType.CAFE recommendations near (6.8573, 80.856525)
+2025-07-26 17:41:02,570 - services.places_enhancement_service - INFO - Added 1 places for Day 2
+2025-07-26 17:41:02,570 - services.places_enhancement_service - INFO - Getting place recommendations for Day 3 at (7.619066666666666, 80.77563333333333)
+2025-07-26 17:41:03,601 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.619066666666666, 80.77563333333333)
+2025-07-26 17:41:04,695 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.619066666666666, 80.77563333333333)
+2025-07-26 17:41:05,781 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.619066666666666, 80.77563333333333)
+2025-07-26 17:41:06,303 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (7.619066666666666, 80.77563333333333)
+2025-07-26 17:41:06,464 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (7.619066666666666, 80.77563333333333)
+2025-07-26 17:41:06,465 - services.places_enhancement_service - INFO - Added 0 places for Day 3
+2025-07-26 17:41:06,465 - integrated_planning - INFO - Integrating results...
+2025-07-26 17:41:06,466 - router.integrated_planning - INFO - Successfully created integrated plan with 1 enhancements
+2025-07-26 17:41:07,356 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:41:07,368 - router.my_trips - ERROR - Error auto-saving travel plan: 'UserResponse' object is not subscriptable
+2025-07-26 17:41:29,978 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:41:30,171 - router.my_trips - ERROR - Error saving travel plan: 'UserResponse' object is not subscriptable
+2025-07-26 17:41:54,342 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:41:54,343 - router.my_trips - ERROR - Error saving travel plan: 'UserResponse' object is not subscriptable
+2025-07-26 17:47:41,184 - __main__ - INFO - Starting Enhanced Travel Planner API...
+2025-07-26 17:50:11,117 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:50:11,336 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:50:11,511 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:50:11,716 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 17:50:11,725 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 17:55:56,288 - __main__ - INFO - Starting Enhanced Travel Planner API...
+2025-07-26 17:56:57,660 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 17:56:58,258 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:57:03,115 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:57:03,406 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_travel_stats?select=%2A&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:57:03,742 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:57:03,982 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_travel_stats?select=%2A&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:57:04,448 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:57:04,450 - services.travel_plan_service - ERROR - Error getting user travel plans: BaseFilterRequestBuilder.filter() missing 2 required positional arguments: 'operator' and 'criteria'
+2025-07-26 17:57:04,450 - router.my_trips - INFO - Retrieved 0 travel plans for user 51acdeef-b1ee-41dd-86a6-69a59a254d05
+2025-07-26 17:57:05,017 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 17:57:05,019 - services.travel_plan_service - ERROR - Error getting user travel plans: BaseFilterRequestBuilder.filter() missing 2 required positional arguments: 'operator' and 'criteria'
+2025-07-26 17:57:05,019 - router.my_trips - INFO - Retrieved 0 travel plans for user 51acdeef-b1ee-41dd-86a6-69a59a254d05
+2025-07-26 17:57:42,767 - googlemaps.client - INFO - API queries_quota: 60
+2025-07-26 17:57:42,767 - services.google_places_service - INFO - Google Maps client initialized successfully
+2025-07-26 17:57:42,768 - router.integrated_planning - INFO - Creating integrated plan for query: I want to  explore nature and village life
+2025-07-26 17:57:42,768 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 17:57:42,768 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I want to  explore nature and village life'
+2025-07-26 17:57:42,769 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 17:57:46,419 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 17:57:47,042 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 17:57:48,198 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 17:57:48,208 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 17:57:48,983 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 17:57:50,048 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 17:57:50,117 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 17:57:50,118 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 17:57:50,145 - services.coordinate_service - INFO - Loading 95 Sri Lankan travel locations
+2025-07-26 17:57:50,146 - services.coordinate_service - INFO - Successfully loaded 91 locations with coordinates
+2025-07-26 17:57:50,146 - services.coordinate_service - INFO - Categories available: ['Beaches', 'Adventure Activities', 'Wildlife Sanctuaries', 'Scenic Train Rides', 'Cultural Heritage Sites', 'Waterfalls', 'Mountains', 'Rainforests', 'Tea Plantations', 'Surfing Spots', 'Hiking Trails', 'Historical Temples', 'Colonial Architecture', 'Ayurvedic Spas', 'Luxury Resorts', 'Whale Watching Locations', 'Cultural Festivals', 'Village Life Experiences']
+2025-07-26 17:57:50,146 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 17:57:50,147 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 18:01:27,663 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 8 balanced clusters
+2025-07-26 18:01:27,664 - router.clustered_recommendations - INFO - Created 8 geographic clusters
+2025-07-26 18:01:27,664 - langgraph_flow.models.geo_clustering - INFO - Ranked 8 clusters by balanced value score
+2025-07-26 18:01:27,664 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Central Province, Value/Hour: 0.15, Attractions: 4, Balanced: False, Travel Time: 421.3min
+2025-07-26 18:01:27,664 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Central Province, Value/Hour: 0.15, Attractions: 4, Balanced: False, Travel Time: 328.6min
+2025-07-26 18:01:27,665 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Central Province, Value/Hour: 0.14, Attractions: 3, Balanced: False, Travel Time: 223.7min
+2025-07-26 18:01:27,668 - router.clustered_recommendations - INFO - Generated 1-day clustered plan in 224896.52ms
+2025-07-26 18:01:27,682 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 18:01:27,683 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (7.395025, 80.90254999999999)
+2025-07-26 18:01:29,329 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.395025, 80.90254999999999)
+2025-07-26 18:01:30,526 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.395025, 80.90254999999999)
+2025-07-26 18:01:31,729 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.395025, 80.90254999999999)
+2025-07-26 18:01:32,199 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (7.395025, 80.90254999999999)
+2025-07-26 18:01:32,511 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (7.395025, 80.90254999999999)
+2025-07-26 18:01:32,512 - services.places_enhancement_service - INFO - Added 0 places for Day 1
+2025-07-26 18:01:32,512 - integrated_planning - INFO - Integrating results...
+2025-07-26 18:01:32,513 - router.integrated_planning - INFO - Successfully created integrated plan with 1 enhancements
+2025-07-26 18:01:33,285 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:01:33,287 - services.travel_plan_service - ERROR - Error creating travel plan: Object of type datetime is not JSON serializable
+2025-07-26 18:01:33,287 - router.my_trips - ERROR - Error auto-saving travel plan: Object of type datetime is not JSON serializable
+2025-07-26 18:01:44,806 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:01:44,811 - services.travel_plan_service - ERROR - Error creating travel plan: Object of type datetime is not JSON serializable
+2025-07-26 18:01:44,811 - router.my_trips - ERROR - Error saving travel plan: Object of type datetime is not JSON serializable
+2025-07-26 18:03:09,152 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:03:09,165 - services.travel_plan_service - ERROR - Error creating travel plan: Object of type datetime is not JSON serializable
+2025-07-26 18:03:09,166 - router.my_trips - ERROR - Error saving travel plan: Object of type datetime is not JSON serializable
+2025-07-26 18:05:40,117 - __main__ - INFO - Starting Enhanced Travel Planner API...
+2025-07-26 18:10:13,940 - __main__ - INFO - Starting Enhanced Travel Planner API...
+2025-07-26 18:13:29,153 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:13:29,568 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:13:29,883 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:13:30,216 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 18:13:30,229 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 18:16:53,927 - googlemaps.client - INFO - API queries_quota: 60
+2025-07-26 18:16:53,928 - services.google_places_service - INFO - Google Maps client initialized successfully
+2025-07-26 18:16:53,928 - router.integrated_planning - INFO - Creating integrated plan for query: I love to explore beaches
+2025-07-26 18:16:53,929 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 18:16:53,929 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I love to explore beaches'
+2025-07-26 18:16:53,929 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 18:16:57,617 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 18:16:58,236 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 18:16:59,708 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 18:16:59,715 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 18:17:00,460 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 18:17:01,712 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 18:17:01,770 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 18:17:01,770 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 18:17:01,772 - services.coordinate_service - INFO - Loading 95 Sri Lankan travel locations
+2025-07-26 18:17:01,773 - services.coordinate_service - INFO - Successfully loaded 91 locations with coordinates
+2025-07-26 18:17:01,773 - services.coordinate_service - INFO - Categories available: ['Beaches', 'Adventure Activities', 'Wildlife Sanctuaries', 'Scenic Train Rides', 'Cultural Heritage Sites', 'Waterfalls', 'Mountains', 'Rainforests', 'Tea Plantations', 'Surfing Spots', 'Hiking Trails', 'Historical Temples', 'Colonial Architecture', 'Ayurvedic Spas', 'Luxury Resorts', 'Whale Watching Locations', 'Cultural Festivals', 'Village Life Experiences']
+2025-07-26 18:17:01,774 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 18:17:01,774 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 18:17:10,727 - langgraph_flow.models.geo_clustering - WARNING - OpenRouteService API failed: 'distance', using haversine fallback
+2025-07-26 18:18:03,766 - langgraph_flow.models.geo_clustering - WARNING - OpenRouteService API failed: 'distance', using haversine fallback
+2025-07-26 18:19:09,096 - router.integrated_planning - INFO - Creating integrated plan for query: I want to explore nature and hiking
+2025-07-26 18:19:09,096 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 18:19:09,096 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I want to explore nature and hiking'
+2025-07-26 18:19:09,097 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 18:19:23,333 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 18:19:23,952 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 18:19:25,046 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 18:19:25,047 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 18:19:25,404 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 18:19:26,559 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 18:19:26,607 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 18:19:26,608 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 18:19:26,609 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 18:19:26,609 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 18:19:28,212 - langgraph_flow.models.geo_clustering - WARNING - OpenRouteService API failed: 'distance', using haversine fallback
+2025-07-26 18:20:31,395 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 8 balanced clusters
+2025-07-26 18:20:31,395 - router.clustered_recommendations - INFO - Created 8 geographic clusters
+2025-07-26 18:20:31,396 - langgraph_flow.models.geo_clustering - INFO - Ranked 8 clusters by balanced value score
+2025-07-26 18:20:31,396 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Southern Province, Value/Hour: 0.16, Attractions: 4, Balanced: False, Travel Time: 385.3min
+2025-07-26 18:20:31,396 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Uva Province, Value/Hour: 0.16, Attractions: 4, Balanced: False, Travel Time: 443.7min
+2025-07-26 18:20:31,397 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Central Province, Value/Hour: 0.15, Attractions: 3, Balanced: False, Travel Time: 342.2min
+2025-07-26 18:20:31,398 - router.clustered_recommendations - INFO - Generated 2-day clustered plan in 217468.22ms
+2025-07-26 18:20:31,406 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 18:20:31,406 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (6.304, 80.4832)
+2025-07-26 18:20:32,827 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.304, 80.4832)
+2025-07-26 18:20:33,835 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.304, 80.4832)
+2025-07-26 18:20:34,956 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.304, 80.4832)
+2025-07-26 18:20:35,561 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (6.304, 80.4832)
+2025-07-26 18:20:35,833 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (6.304, 80.4832)
+2025-07-26 18:20:35,834 - services.places_enhancement_service - INFO - Added 0 places for Day 1
+2025-07-26 18:20:35,834 - services.places_enhancement_service - INFO - Getting place recommendations for Day 2 at (6.234325, 81.050975)
+2025-07-26 18:20:36,862 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.234325, 81.050975)
+2025-07-26 18:20:38,016 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.234325, 81.050975)
+2025-07-26 18:20:39,154 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.234325, 81.050975)
+2025-07-26 18:20:39,510 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (6.234325, 81.050975)
+2025-07-26 18:20:39,758 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (6.234325, 81.050975)
+2025-07-26 18:20:39,759 - services.places_enhancement_service - INFO - Added 0 places for Day 2
+2025-07-26 18:20:39,759 - integrated_planning - INFO - Integrating results...
+2025-07-26 18:20:39,760 - router.integrated_planning - INFO - Successfully created integrated plan with 1 enhancements
+2025-07-26 18:22:34,106 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 8 balanced clusters
+2025-07-26 18:22:34,106 - router.clustered_recommendations - INFO - Created 8 geographic clusters
+2025-07-26 18:22:34,107 - langgraph_flow.models.geo_clustering - INFO - Ranked 8 clusters by balanced value score
+2025-07-26 18:22:34,107 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Sabaragamuwa Province, Value/Hour: 0.22, Attractions: 3, Balanced: True, Travel Time: 35.2min
+2025-07-26 18:22:34,107 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Central Province, Value/Hour: 0.17, Attractions: 4, Balanced: False, Travel Time: 236.2min
+2025-07-26 18:22:34,107 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Sabaragamuwa Province, Value/Hour: 0.15, Attractions: 4, Balanced: False, Travel Time: 362.0min
+2025-07-26 18:22:34,110 - router.clustered_recommendations - INFO - Generated 1-day clustered plan in 205012.96ms
+2025-07-26 18:22:34,121 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 18:22:34,122 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (6.793166666666667, 80.84706666666666)
+2025-07-26 18:23:43,460 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.793166666666667, 80.84706666666666)
+2025-07-26 18:23:44,678 - services.google_places_service - INFO - Found 1 PlaceType.RESTAURANT recommendations near (6.793166666666667, 80.84706666666666)
+2025-07-26 18:23:45,873 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (6.793166666666667, 80.84706666666666)
+2025-07-26 18:23:46,206 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (6.793166666666667, 80.84706666666666)
+2025-07-26 18:23:46,537 - services.google_places_service - INFO - Found 0 PlaceType.CAFE recommendations near (6.793166666666667, 80.84706666666666)
+2025-07-26 18:23:46,538 - services.places_enhancement_service - INFO - Added 1 places for Day 1
+2025-07-26 18:23:46,538 - integrated_planning - INFO - Integrating results...
+2025-07-26 18:23:46,538 - router.integrated_planning - INFO - Successfully created integrated plan with 1 enhancements
+2025-07-26 18:24:04,427 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 18:24:04,839 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:24:10,763 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:24:10,964 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:24:11,196 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:24:11,514 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 18:24:11,516 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 18:24:17,459 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 18:24:17,954 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:26:00,459 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:26:01,015 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_travel_stats?select=%2A&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:26:01,261 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:26:01,552 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_travel_stats?select=%2A&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:26:01,846 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:26:01,859 - services.travel_plan_service - ERROR - Error getting user travel plans: BaseFilterRequestBuilder.filter() missing 2 required positional arguments: 'operator' and 'criteria'
+2025-07-26 18:26:01,860 - router.my_trips - INFO - Retrieved 0 travel plans for user 51acdeef-b1ee-41dd-86a6-69a59a254d05
+2025-07-26 18:26:02,081 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:26:02,082 - services.travel_plan_service - ERROR - Error getting user travel plans: BaseFilterRequestBuilder.filter() missing 2 required positional arguments: 'operator' and 'criteria'
+2025-07-26 18:26:02,083 - router.my_trips - INFO - Retrieved 0 travel plans for user 51acdeef-b1ee-41dd-86a6-69a59a254d05
+2025-07-26 18:26:16,647 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:26:16,848 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:26:17,080 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:26:17,325 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 18:26:17,326 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 18:26:21,783 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 18:26:22,246 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:29:40,449 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:29:40,649 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:29:40,937 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:29:41,193 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 18:29:41,194 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}
+2025-07-26 18:29:45,017 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&email=eq.bhdilanka%40gmail.com "HTTP/2 200 OK"
+2025-07-26 18:29:45,462 - httpx - INFO - HTTP Request: PATCH https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:30:41,111 - router.integrated_planning - INFO - Creating integrated plan for query: I want to travel village and explore nature
+2025-07-26 18:30:41,112 - integrated_planning - INFO - Generating base clustered plan...
+2025-07-26 18:30:41,118 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I want to travel village and explore nature'
+2025-07-26 18:30:41,138 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 18:30:50,164 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 18:30:50,898 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 18:30:52,177 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 18:30:52,186 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 18:30:52,945 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 18:30:54,488 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 18:30:54,562 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 18:30:54,563 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 18:30:54,564 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 18:30:54,564 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 18:34:53,159 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 10 balanced clusters
+2025-07-26 18:34:53,160 - router.clustered_recommendations - INFO - Created 10 geographic clusters
+2025-07-26 18:34:53,163 - langgraph_flow.models.geo_clustering - INFO - Ranked 10 clusters by balanced value score
+2025-07-26 18:34:53,164 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Central Province, Value/Hour: 0.17, Attractions: 3, Balanced: False, Travel Time: 182.1min
+2025-07-26 18:34:53,164 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Central Province, Value/Hour: 0.15, Attractions: 3, Balanced: False, Travel Time: 285.2min
+2025-07-26 18:34:53,164 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Central Province, Value/Hour: 0.15, Attractions: 3, Balanced: False, Travel Time: 294.7min
+2025-07-26 18:34:53,184 - router.clustered_recommendations - INFO - Generated 1-day clustered plan in 252053.80ms
+2025-07-26 18:34:53,211 - integrated_planning - INFO - Applying enhancements...
+2025-07-26 18:34:53,214 - services.places_enhancement_service - INFO - Getting place recommendations for Day 1 at (7.021933333333333, 80.69286666666666)
+2025-07-26 18:34:55,855 - services.google_places_service - INFO - Found 2 PlaceType.RESTAURANT recommendations near (7.021933333333333, 80.69286666666666)
+2025-07-26 18:34:57,265 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.021933333333333, 80.69286666666666)
+2025-07-26 18:34:58,592 - services.google_places_service - INFO - Found 0 PlaceType.RESTAURANT recommendations near (7.021933333333333, 80.69286666666666)
+2025-07-26 18:34:59,088 - services.google_places_service - INFO - Found 0 PlaceType.LODGING recommendations near (7.021933333333333, 80.69286666666666)
+2025-07-26 18:34:59,606 - services.google_places_service - INFO - Found 1 PlaceType.CAFE recommendations near (7.021933333333333, 80.69286666666666)
+2025-07-26 18:34:59,607 - services.places_enhancement_service - INFO - Added 3 places for Day 1
+2025-07-26 18:34:59,610 - integrated_planning - INFO - Integrating results...
+2025-07-26 18:34:59,613 - router.integrated_planning - INFO - Successfully created integrated plan with 1 enhancements
+2025-07-26 18:35:00,754 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:35:01,611 - httpx - INFO - HTTP Request: POST https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_travel_plans "HTTP/2 401 Unauthorized"
+2025-07-26 18:35:01,623 - services.travel_plan_service - ERROR - Error creating travel plan: {'message': 'new row violates row-level security policy for table "user_travel_plans"', 'code': '42501', 'hint': None, 'details': None}
+2025-07-26 18:35:01,627 - router.my_trips - ERROR - Error auto-saving travel plan: {'message': 'new row violates row-level security policy for table "user_travel_plans"', 'code': '42501', 'hint': None, 'details': None}
+2025-07-26 18:40:11,712 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:40:11,971 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/user_profiles?select=%2A&id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:40:12,175 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/reviews?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 200 OK"
+2025-07-26 18:40:12,505 - httpx - INFO - HTTP Request: GET https://rgbxpspefdnmzaknzdes.supabase.co/rest/v1/bookings?select=id&user_id=eq.51acdeef-b1ee-41dd-86a6-69a59a254d05 "HTTP/2 404 Not Found"
+2025-07-26 18:40:12,510 - services.auth_service - ERROR - Get user profile failed: {'message': 'relation "public.bookings" does not exist', 'code': '42P01', 'hint': None, 'details': None}

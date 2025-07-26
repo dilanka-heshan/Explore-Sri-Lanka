@@ -94,9 +94,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
   const [token, setToken] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [mounted, setMounted] = useState(false)
 
-  // Initialize auth state from localStorage
+  // Ensure we're mounted on client before accessing localStorage
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Initialize auth state from localStorage - only on client
+  useEffect(() => {
+    if (!mounted) return
+
     const initializeAuth = async () => {
       try {
         const storedToken = localStorage.getItem('authToken')
@@ -120,7 +128,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
 
     initializeAuth()
-  }, [])
+  }, [mounted])
 
   const apiRequest = async (endpoint: string, options: RequestInit = {}) => {
     const url = `${API_BASE_URL}${endpoint}`
