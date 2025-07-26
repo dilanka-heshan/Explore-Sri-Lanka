@@ -331,8 +331,8 @@ class PEARRanker:
         self,
         user_query: str,
         user_context: Dict[str, Any],
-        top_k: int = 30,
-        vector_search_limit: int = 100
+        top_k: int = 30, #Because we store 95
+        vector_search_limit: int = 100 #Currently store 95
     ) -> List[Dict[str, Any]]:
         """
         Get recommendations directly from vector database (new functionality)

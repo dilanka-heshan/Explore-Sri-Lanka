@@ -21,3 +21,106 @@
 2025-07-26 01:06:42,620 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Central Province, Value/Hour: 0.24, Attractions: 2, Balanced: False, Travel Time: 81.1min
 2025-07-26 01:06:42,620 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Central Province, Value/Hour: 0.20, Attractions: 3, Balanced: True, Travel Time: 86.9min
 2025-07-26 01:06:42,622 - router.clustered_recommendations - INFO - Generated 3-day clustered plan in 110033.39ms
+2025-07-26 09:59:49,582 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I want to explore ancient temples and cultural sites in Sri Lanka'
+2025-07-26 09:59:49,584 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 09:59:53,684 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 09:59:54,311 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 09:59:55,409 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 09:59:55,423 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 09:59:56,211 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 09:59:57,500 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 09:59:57,589 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 09:59:57,591 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 09:59:57,592 - services.coordinate_service - INFO - Loading 95 Sri Lankan travel locations
+2025-07-26 09:59:57,592 - services.coordinate_service - INFO - Successfully loaded 91 locations with coordinates
+2025-07-26 09:59:57,593 - services.coordinate_service - INFO - Categories available: ['Beaches', 'Adventure Activities', 'Wildlife Sanctuaries', 'Scenic Train Rides', 'Cultural Heritage Sites', 'Waterfalls', 'Mountains', 'Rainforests', 'Tea Plantations', 'Surfing Spots', 'Hiking Trails', 'Historical Temples', 'Colonial Architecture', 'Ayurvedic Spas', 'Luxury Resorts', 'Whale Watching Locations', 'Cultural Festivals', 'Village Life Experiences']
+2025-07-26 09:59:57,593 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 09:59:57,594 - langgraph_flow.models.geo_clustering_optimized - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 10:02:03,462 - langgraph_flow.models.geo_clustering_optimized - WARNING - OpenRouteService API failed: 'distance', using haversine fallback
+2025-07-26 10:02:56,739 - langgraph_flow.models.geo_clustering_optimized - INFO - Smart clustering created 11 balanced clusters
+2025-07-26 10:02:56,740 - router.clustered_recommendations - INFO - Created 11 geographic clusters
+2025-07-26 10:02:56,741 - langgraph_flow.models.geo_clustering_optimized - INFO - Ranked 11 clusters by balanced value score
+2025-07-26 10:02:56,741 - langgraph_flow.models.geo_clustering_optimized - INFO - Cluster 1: Southern/Uva Provinces, Value/Hour: 0.24, Attractions: 2, Balanced: True, Travel Time: 31.6min
+2025-07-26 10:02:56,741 - langgraph_flow.models.geo_clustering_optimized - INFO - Cluster 2: Eastern Province, Value/Hour: 0.24, Attractions: 2, Balanced: True, Travel Time: 0.0min
+2025-07-26 10:02:56,741 - langgraph_flow.models.geo_clustering_optimized - INFO - Cluster 3: Central Province, Value/Hour: 0.22, Attractions: 3, Balanced: True, Travel Time: 46.5min
+2025-07-26 10:02:56,754 - router.clustered_recommendations - INFO - Generated 5-day clustered plan in 187168.49ms
+2025-07-26 10:03:21,757 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I want to explore ancient temples and cultural sites in Sri Lanka'
+2025-07-26 10:03:21,758 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 10:03:26,886 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 10:03:27,483 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 10:03:28,440 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 10:03:28,442 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 10:03:28,773 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 10:03:29,962 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 10:03:29,997 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 10:03:29,998 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 10:03:29,999 - services.coordinate_service - INFO - Loading 95 Sri Lankan travel locations
+2025-07-26 10:03:29,999 - services.coordinate_service - INFO - Successfully loaded 91 locations with coordinates
+2025-07-26 10:03:29,999 - services.coordinate_service - INFO - Categories available: ['Beaches', 'Adventure Activities', 'Wildlife Sanctuaries', 'Scenic Train Rides', 'Cultural Heritage Sites', 'Waterfalls', 'Mountains', 'Rainforests', 'Tea Plantations', 'Surfing Spots', 'Hiking Trails', 'Historical Temples', 'Colonial Architecture', 'Ayurvedic Spas', 'Luxury Resorts', 'Whale Watching Locations', 'Cultural Festivals', 'Village Life Experiences']
+2025-07-26 10:03:30,000 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 10:03:30,000 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 10:06:23,177 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 10 balanced clusters
+2025-07-26 10:06:23,178 - router.clustered_recommendations - INFO - Created 10 geographic clusters
+2025-07-26 10:06:23,178 - langgraph_flow.models.geo_clustering - INFO - Ranked 10 clusters by balanced value score
+2025-07-26 10:06:23,178 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Central Province, Value/Hour: 0.24, Attractions: 2, Balanced: True, Travel Time: 35.2min
+2025-07-26 10:06:23,178 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Uva Province, Value/Hour: 0.24, Attractions: 2, Balanced: True, Travel Time: 31.6min
+2025-07-26 10:06:23,179 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Uva Province, Value/Hour: 0.23, Attractions: 2, Balanced: True, Travel Time: 0.0min
+2025-07-26 10:06:23,188 - router.clustered_recommendations - INFO - Generated 5-day clustered plan in 181430.14ms
+2025-07-26 10:12:14,447 - router.clustered_recommendations - INFO - Getting recommendations for query: 'I want to explore ancient temples and cultural sites in Sri Lanka'
+2025-07-26 10:12:14,448 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 10:12:17,892 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 10:12:18,532 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 10:12:19,510 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 10:12:19,512 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 10:12:19,878 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 10:12:20,987 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 10:12:21,025 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 10:12:21,026 - router.clustered_recommendations - INFO - Found 30 top attractions
+2025-07-26 10:12:21,027 - services.coordinate_service - INFO - Loading 95 Sri Lankan travel locations
+2025-07-26 10:12:21,027 - services.coordinate_service - INFO - Successfully loaded 91 locations with coordinates
+2025-07-26 10:12:21,028 - services.coordinate_service - INFO - Categories available: ['Beaches', 'Adventure Activities', 'Wildlife Sanctuaries', 'Scenic Train Rides', 'Cultural Heritage Sites', 'Waterfalls', 'Mountains', 'Rainforests', 'Tea Plantations', 'Surfing Spots', 'Hiking Trails', 'Historical Temples', 'Colonial Architecture', 'Ayurvedic Spas', 'Luxury Resorts', 'Whale Watching Locations', 'Cultural Festivals', 'Village Life Experiences']
+2025-07-26 10:12:21,028 - router.clustered_recommendations - INFO - Prepared 30 attractions with coordinates for clustering
+2025-07-26 10:12:21,029 - langgraph_flow.models.geo_clustering - INFO - Creating balanced clusters from 30 top attractions
+2025-07-26 10:17:32,086 - langgraph_flow.models.geo_clustering - INFO - Smart clustering created 10 balanced clusters
+2025-07-26 10:17:32,087 - router.clustered_recommendations - INFO - Created 10 geographic clusters
+2025-07-26 10:17:32,087 - langgraph_flow.models.geo_clustering - INFO - Ranked 10 clusters by balanced value score
+2025-07-26 10:17:32,088 - langgraph_flow.models.geo_clustering - INFO - Cluster 1: Central Province, Value/Hour: 0.24, Attractions: 2, Balanced: True, Travel Time: 35.2min
+2025-07-26 10:17:32,088 - langgraph_flow.models.geo_clustering - INFO - Cluster 2: Uva Province, Value/Hour: 0.24, Attractions: 2, Balanced: True, Travel Time: 31.6min
+2025-07-26 10:17:32,088 - langgraph_flow.models.geo_clustering - INFO - Cluster 3: Uva Province, Value/Hour: 0.24, Attractions: 2, Balanced: True, Travel Time: 0.0min
+2025-07-26 10:17:32,089 - router.clustered_recommendations - INFO - Generated 5-day clustered plan in 317641.85ms
+2025-07-26 10:25:00,493 - __main__ - INFO - Starting Enhanced Travel Planner API...
+2025-07-26 10:29:55,471 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 10:29:58,786 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 10:29:59,418 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 10:30:00,493 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 10:30:00,508 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 10:30:00,508 - router.enhanced_recommendations - INFO - Successfully initialized PEAR ranker for recommendations API
+2025-07-26 10:30:01,255 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 10:30:02,404 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 10:30:02,486 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 10:30:02,487 - router.enhanced_recommendations - INFO - Generated 30 recommendations in 7016.74ms
+2025-07-26 10:40:05,580 - router.clustered_recommendations - INFO - Getting simple recommendations for query: 'I want to explore ancient temples and cultural sites in Sri Lanka'
+2025-07-26 10:40:05,580 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 10:40:09,105 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 10:40:09,727 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 10:40:10,885 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 10:40:10,886 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 10:40:11,210 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 10:40:12,307 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 10:40:12,345 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 10:40:12,346 - router.clustered_recommendations - INFO - Found 30 attractions
+2025-07-26 10:40:12,347 - services.coordinate_service - INFO - Loading 95 Sri Lankan travel locations
+2025-07-26 10:40:12,347 - services.coordinate_service - INFO - Successfully loaded 91 locations with coordinates
+2025-07-26 10:40:12,348 - services.coordinate_service - INFO - Categories available: ['Beaches', 'Adventure Activities', 'Wildlife Sanctuaries', 'Scenic Train Rides', 'Cultural Heritage Sites', 'Waterfalls', 'Mountains', 'Rainforests', 'Tea Plantations', 'Surfing Spots', 'Hiking Trails', 'Historical Temples', 'Colonial Architecture', 'Ayurvedic Spas', 'Luxury Resorts', 'Whale Watching Locations', 'Cultural Festivals', 'Village Life Experiences']
+2025-07-26 10:40:12,349 - router.clustered_recommendations - INFO - Generated 30 simple recommendations in 6767.96ms
+2025-07-26 10:41:02,369 - router.clustered_recommendations - INFO - Getting simple recommendations for query: 'I want to explore ancient temples and cultural sites in Sri Lanka'
+2025-07-26 10:41:02,369 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-26 10:41:05,843 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-07-26 10:41:06,472 - langgraph_flow.models.pear_ranker - INFO - Initialized Qdrant client with API key authentication
+2025-07-26 10:41:07,334 - httpx - INFO - HTTP Request: GET https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl "HTTP/1.1 200 OK"
+2025-07-26 10:41:07,335 - langgraph_flow.models.pear_ranker - INFO - Connected to Qdrant collection 'exploresl' with 95 places
+2025-07-26 10:41:07,649 - httpx - INFO - HTTP Request: POST https://50ab27b1-fac6-42dc-88af-ef70408179e6.us-east-1-0.aws.cloud.qdrant.io:6333/collections/exploresl/points/search "HTTP/1.1 200 OK"
+2025-07-26 10:41:08,725 - langgraph_flow.models.pear_ranker - INFO - Retrieved 95 candidates from vector database
+2025-07-26 10:41:08,770 - langgraph_flow.models.pear_ranker - INFO - Returning top 30 recommendations from vector database
+2025-07-26 10:41:08,771 - router.clustered_recommendations - INFO - Found 30 attractions
+2025-07-26 10:41:08,772 - router.clustered_recommendations - INFO - Generated 30 simple recommendations in 6403.28ms

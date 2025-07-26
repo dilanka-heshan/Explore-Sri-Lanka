@@ -14,6 +14,7 @@ from router import planner
 from router import chatbot, destinations, gallery, stories, newsletter, admin
 from router import admin_data  # New admin and data management router
 from router import clustered_recommendations  # Advanced geographic clustering
+from router import enhanced_recommendations  # Simple PEAR-based recommendations
 
 # Configure logging
 logging.basicConfig(
@@ -86,6 +87,7 @@ try:
     app.include_router(admin.router)
     app.include_router(admin_data.router)  # New admin and data management endpoints
     app.include_router(clustered_recommendations.router)  # Advanced geographic clustering
+    app.include_router(enhanced_recommendations.router)  # Simple PEAR-based recommendations
 except Exception as e:
     logger.warning(f"Some routers not available: {e}")
 

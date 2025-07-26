@@ -2,6 +2,9 @@
 Advanced Geographic Clustering Module
 Clusters attractions based on OpenStreetMap routing and geographic proximity
 Optimized for balanced daily itineraries with minimal travel distances
+
+To implement that we also used Google OR library very easy and reliable check
+ my kaggle (account uom220338N) using that we difficult clustering therefore manually improved In future version update this in to Google or library for more convenience
 """
 
 import math
@@ -869,16 +872,56 @@ class GeographicClusterer:
         # Basic region mapping for Sri Lanka
         # This is a simplified version - in production, use proper geographic boundaries
         
-        if lat > 8.5:  # Northern region
+        if (lat >= 9.0 and lng >= 79.6 and lng <= 81.9):  # Jaffna, Kilinochchi, Mannar, Mullaitivu, Vavuniya
             return "Northern Province"
-        elif lat > 7.5 and lng < 80.5:  # Western region
+        
+        # North Western Province districts
+        elif ((lat >= 7.5 and lat < 8.8 and lng >= 79.4 and lng <= 80.4) or  # Kurunegala
+            (lat >= 8.0 and lat < 8.8 and lng >= 79.6 and lng <= 80.0)):    # Puttalam
+            return "North Western Province"
+        
+        # Western Province districts
+        elif ((lat >= 6.8 and lat <= 7.4 and lng >= 79.6 and lng <= 80.3) or  # Colombo
+            (lat >= 7.0 and lat <= 7.5 and lng >= 79.7 and lng <= 80.2) or  # Gampaha
+            (lat >= 6.2 and lat <= 6.8 and lng >= 79.8 and lng <= 80.3)):   # Kalutara
             return "Western Province"
-        elif lat > 7.0 and lng > 81.0:  # Eastern region
-            return "Eastern Province"
-        elif lat > 6.5:  # Central region
+        
+        # North Central Province districts
+        elif ((lat >= 7.8 and lat <= 8.8 and lng >= 80.0 and lng <= 80.8) or  # Anuradhapura
+            (lat >= 7.5 and lat <= 8.2 and lng >= 80.6 and lng <= 81.3)):   # Polonnaruwa
+            return "North Central Province"
+        
+        # Central Province districts
+        elif ((lat >= 7.0 and lat <= 7.6 and lng >= 80.4 and lng <= 80.9) or  # Kandy
+            (lat >= 7.2 and lat <= 7.8 and lng >= 80.5 and lng <= 80.8) or  # Matale
+            (lat >= 6.8 and lat <= 7.2 and lng >= 80.6 and lng <= 80.9)):   # Nuwara Eliya
             return "Central Province"
-        else:  # Southern region
+        
+        # Eastern Province districts
+        elif ((lat >= 6.8 and lat <= 8.8 and lng >= 81.0 and lng <= 82.0) or  # Trincomalee
+            (lat >= 7.5 and lat <= 8.2 and lng >= 81.2 and lng <= 81.8) or  # Batticaloa
+            (lat >= 6.0 and lat <= 7.5 and lng >= 81.4 and lng <= 82.0)):   # Ampara
+            return "Eastern Province"
+        
+        # Uva Province districts
+        elif ((lat >= 6.5 and lat <= 7.2 and lng >= 80.8 and lng <= 81.4) or  # Badulla
+            (lat >= 6.0 and lat <= 6.8 and lng >= 81.0 and lng <= 81.6)):   # Monaragala
+            return "Uva Province"
+        
+        # Southern Province districts
+        elif ((lat >= 5.9 and lat <= 6.4 and lng >= 80.0 and lng <= 80.4) or  # Galle
+            (lat >= 5.8 and lat <= 6.2 and lng >= 80.2 and lng <= 80.8) or  # Matara
+            (lat >= 6.0 and lat <= 6.4 and lng >= 80.8 and lng <= 81.8)):   # Hambantota
             return "Southern Province"
+        
+        # Sabaragamuwa Province districts
+        elif ((lat >= 6.6 and lat <= 7.4 and lng >= 80.0 and lng <= 80.6) or  # Kegalle
+            (lat >= 6.2 and lat <= 6.8 and lng >= 80.2 and lng <= 80.8)):   # Ratnapura
+            return "Sabaragamuwa Province"
+        
+        # Default fallback
+        else:
+            return "Unknown Province"
     
     def rank_clusters_by_value(self, clusters: List[GeoCluster]) -> List[GeoCluster]:
         """Rank clusters by value per hour ratio"""

@@ -20,7 +20,7 @@ class Settings:
     QDRANT_HOST: str = os.getenv("QDRANT_HOST", "localhost")
     QDRANT_PORT: int = int(os.getenv("QDRANT_PORT", "6333"))
     QDRANT_API_KEY: str = os.getenv("QDRANT_API_KEY", "")
-    QDRANT_COLLECTION_NAME: str = os.getenv("QDRANT_COLLECTION_NAME", "sri_lanka_attractions")
+    QDRANT_COLLECTION_NAME: str = os.getenv("QDRANT_COLLECTION_NAME", "exploresl")
     QDRANT_USE_MOCK: bool = os.getenv("USE_MOCK_VECTOR_DB", "true").lower() == "true"
     
     # Database Configuration
