@@ -2,32 +2,34 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Search, MapPin, Calendar, Star, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import { Search, MapPin, Calendar, Star, ArrowRight, ChevronLeft, ChevronRight, Heart } from "lucide-react"
 import { apiClient } from "@/lib/api"
+import { Destination, BlogPost, HeroSlide, SeasonalPick } from "@/lib/types"
+import { useAuth } from "@/contexts/AuthContext"
 import "./globals.css"
 
-const heroSlides = [
+const heroSlides: HeroSlide[] = [
   {
     id: 1,
-    image: "/my-app/public/pexels-shaani-sewwandi-1401278-2937148.jpg",
+    image: "/pexels-shaani-sewwandi-1401278-2937148.jpg",
     title: "Discover Paradise",
     subtitle: "Experience the magic of Sri Lanka",
   },
   {
     id: 2,
-    image: "/my-app/public/pexels-srkportraits-10710560.jpg",
+    image: "/pexels-srkportraits-10710560.jpg",
     title: "Ancient Wonders",
     subtitle: "Explore 2,500 years of history",
   },
   {
     id: 3,
-    image: "/my-app/public/pexels-freestockpro-320260 (1).jpg",
+    image: "/pexels-freestockpro-320260 (1).jpg",
     title: "Tropical Beaches",
     subtitle: "Relax on pristine golden shores",
   },
 ]
 
-const seasonalPicks = [
+const seasonalPicks: SeasonalPick[] = [
   {
     id: 1,
     title: "Monsoon Magic",
@@ -53,10 +55,14 @@ const seasonalPicks = [
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [featuredDestinations, setFeaturedDestinations] = useState([])
-  const [journalPreviews, setJournalPreviews] = useState([])
+  const [featuredDestinations, setFeaturedDestinations] = useState<Destination[]>([])
+  const [journalPreviews, setJournalPreviews] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState("")
+  const [isPaused, setIsPaused] = useState(false)
+
+  const { user, saveDestination, unsaveDestination, isAuthenticated } = useAuth()
 
   useEffect(() => {
     fetchData()
@@ -65,20 +71,45 @@ export default function HomePage() {
   const fetchData = async () => {
     try {
       setLoading(true)
+      setError(null)
+
+      // Test backend connection first
+      await apiClient.healthCheck()
+      console.log("Backend connection successful")
 
       // Fetch featured destinations
       const destinationsData = await apiClient.getDestinations({ limit: 8 })
       setFeaturedDestinations(destinationsData)
 
       // Fetch recent blog posts
-      const blogData = await apiClient.getBlogPosts({ limit: 3 })
+      const blogData = await apiClient.getBlogPosts({ 
+        published_only: true, 
+        limit: 6 
+      })
       setJournalPreviews(blogData)
+
     } catch (error) {
       console.error("Failed to fetch data:", error)
+      setError(error instanceof Error ? error.message : "Failed to load data")
+      
+      // Set fallback data if backend is not available
+      setFeaturedDestinations([])
+      setJournalPreviews([])
     } finally {
       setLoading(false)
     }
   }
+
+  // Auto-slide functionality
+  useEffect(() => {
+    if (isPaused) return
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+    }, 10000)
+
+    return () => clearInterval(interval)
+  }, [isPaused])
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
@@ -88,10 +119,68 @@ export default function HomePage() {
     setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
   }
 
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!searchQuery.trim()) return
+
+    try {
+      const results = await apiClient.searchContent(searchQuery)
+      console.log("Search results:", results)
+      // Handle search results - could redirect to search page
+    } catch (error) {
+      console.error("Search failed:", error)
+    }
+  }
+
+  const handleSaveDestination = async (destinationId: string) => {
+    if (!isAuthenticated) {
+      // Could show auth modal here
+      return
+    }
+
+    try {
+      const isSaved = user?.favorite_destinations?.includes(destinationId)
+      if (isSaved) {
+        await unsaveDestination(destinationId)
+      } else {
+        await saveDestination(destinationId)
+      }
+    } catch (error) {
+      console.error("Failed to save/unsave destination:", error)
+    }
+  }
+
+
   // Add loading state for featured destinations section
   const renderFeaturedDestinations = () => {
     if (loading) {
-      return <div className="text-center">Loading destinations...</div>
+      return (
+        <div className="flex justify-center items-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div>
+        </div>
+      )
+    }
+
+    if (error) {
+      return (
+        <div className="text-center py-12">
+          <p className="text-red-600 mb-4">Failed to load destinations: {error}</p>
+          <button 
+            onClick={fetchData}
+            className="btn-primary"
+          >
+            Retry
+          </button>
+        </div>
+      )
+    }
+
+    if (featuredDestinations.length === 0) {
+      return (
+        <div className="text-center py-12">
+          <p className="text-gray-600">No destinations available at the moment.</p>
+        </div>
+      )
     }
 
     return (
@@ -105,23 +194,42 @@ export default function HomePage() {
             >
               <div className="relative">
                 <img
-                  src={destination.image || "/placeholder.svg"}
+                  src={destination.image_url || "/placeholder.svg"}
                   alt={destination.name}
                   className="w-full h-48 object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "/placeholder.svg"
+                  }}
                 />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-700">
-                  {destination.category}
+                  {destination.destination_type}
                 </div>
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full flex items-center space-x-1">
                   <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                  <span className="text-sm font-medium text-gray-700">{destination.rating}</span>
+                  <span className="text-sm font-medium text-gray-700">
+                    {destination.rating?.toFixed(1) || "4.5"}
+                  </span>
                 </div>
+                {isAuthenticated && (
+                  <button
+                    onClick={() => handleSaveDestination(destination.id)}
+                    className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors duration-200"
+                  >
+                    <Heart 
+                      className={`w-4 h-4 ${
+                        user?.favorite_destinations?.includes(destination.id)
+                          ? 'text-red-500 fill-current'
+                          : 'text-gray-600'
+                      }`}
+                    />
+                  </button>
+                )}
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-poppins font-semibold mb-2">{destination.name}</h3>
-                <p className="text-gray-600 mb-4">{destination.description}</p>
+                <p className="text-gray-600 mb-4 line-clamp-3">{destination.description}</p>
                 <Link
-                  href={`/destinations/${destination.name.toLowerCase()}`}
+                  href={`/destinations/${destination.slug}`}
                   className="inline-flex items-center text-teal-600 hover:text-teal-700 font-medium transition-colors duration-200"
                 >
                   Learn More
@@ -157,13 +265,15 @@ export default function HomePage() {
         {/* Navigation Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 z-10"
+          className="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 z-50"
+          type="button"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 z-10"
+          className="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 z-50"
+          type="button"
         >
           <ChevronRight className="w-6 h-6" />
         </button>

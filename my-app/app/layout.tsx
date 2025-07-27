@@ -4,7 +4,10 @@ import { Inter, Poppins } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import ChatBot from "@/components/chatbot"
+import { ChatButton } from "@/components/chatbot/advanced-chatbot"
+import { AuthProvider } from "@/contexts/AuthContext"
+import { Toaster } from "react-hot-toast"
+import ClientOnly from "@/components/ClientOnly"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const poppins = Poppins({
@@ -26,11 +29,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <body className="font-inter bg-white text-gray-900 overflow-x-hidden">
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
-        <ChatBot />
+      <body className="font-inter bg-white text-gray-900 overflow-x-hidden" suppressHydrationWarning={true}>
+        <AuthProvider>
+          <Navbar />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+          <ClientOnly>
+            <ChatButton />
+          </ClientOnly>
+          <Toaster position="top-right" />
+        </AuthProvider>
       </body>
     </html>
   )

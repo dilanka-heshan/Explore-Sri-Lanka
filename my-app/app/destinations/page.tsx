@@ -4,15 +4,16 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Search, Filter, MapPin, Star, Map } from "lucide-react"
 import { apiClient } from "@/lib/api"
+import { useDestinationTypes } from "@/lib/hooks/useDestinationTypes"
+import { Destination } from "@/lib/types"
 
-const filters = {
+const staticFilters = {
   regions: ["All", "Central", "Southern", "Northern", "Eastern", "Western", "North Central"],
-  types: ["All", "Cultural", "Beach", "Nature", "Wildlife", "Historical", "Adventure"],
   seasons: ["All", "Year-round", "Nov-Apr", "Apr-Oct", "Feb-Jul", "May-Sep"],
 }
 
 export default function DestinationsPage() {
-  const [destinations, setDestinations] = useState([])
+  const [destinations, setDestinations] = useState<Destination[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedRegion, setSelectedRegion] = useState("All")
@@ -20,6 +21,16 @@ export default function DestinationsPage() {
   const [selectedSeason, setSelectedSeason] = useState("All")
   const [showMap, setShowMap] = useState(false)
   const [showFilters, setShowFilters] = useState(false)
+  
+  // Get dynamic destination types from database
+  const { destinationTypes, loading: typesLoading } = useDestinationTypes()
+  
+  // Create dynamic filters object
+  const filters = {
+    regions: staticFilters.regions,
+    types: ["All", ...destinationTypes],
+    seasons: staticFilters.seasons,
+  }
 
   useEffect(() => {
     fetchDestinations()
@@ -35,7 +46,7 @@ export default function DestinationsPage() {
         limit: 50,
       }
 
-      const data = await apiClient.getDestinations(params)
+      const data = await apiClient.getDestinations(params) as Destination[]
       setDestinations(data)
     } catch (error) {
       console.error("Failed to fetch destinations:", error)
@@ -45,7 +56,7 @@ export default function DestinationsPage() {
   }
 
   const filteredDestinations = destinations.filter((destination) => {
-    const matchesSeason = selectedSeason === "All" || destination.best_season === selectedSeason
+    const matchesSeason = selectedSeason === "All" || destination.bestTimeToVisit === selectedSeason
     return matchesSeason
   })
 
@@ -197,7 +208,7 @@ export default function DestinationsPage() {
             {filteredDestinations.map((destination, index) => (
               <Link
                 key={destination.id}
-                href={`/destinations/${destination.slug}`}
+                href={`/destinations/${destination.id}`}
                 className="group animate-slide-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
@@ -209,7 +220,7 @@ export default function DestinationsPage() {
                       className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-700">
-                      {destination.type}
+                      {destination.type || destination.category}
                     </div>
                     <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full flex items-center space-x-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
@@ -227,20 +238,22 @@ export default function DestinationsPage() {
                     <p className="text-gray-600 mb-4 line-clamp-2">{destination.description}</p>
 
                     <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                      <span>{destination.reviews} reviews</span>
-                      <span>Best: {destination.season}</span>
+                      <span>★ {destination.rating || 'No rating'}</span>
+                      <span>Best: {destination.bestTimeToVisit || 'Year-round'}</span>
                     </div>
 
-                    <div className="space-y-2">
-                      <h4 className="font-medium text-gray-900">Highlights:</h4>
-                      <div className="flex flex-wrap gap-1">
-                        {destination.highlights.slice(0, 3).map((highlight, idx) => (
-                          <span key={idx} className="px-2 py-1 bg-teal-50 text-teal-700 text-xs rounded-full">
-                            {highlight}
-                          </span>
-                        ))}
+                    {destination.activities && destination.activities.length > 0 && (
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-gray-900">Highlights:</h4>
+                        <div className="flex flex-wrap gap-1">
+                          {destination.activities.slice(0, 3).map((activity: string, idx: number) => (
+                            <span key={idx} className="px-2 py-1 bg-teal-50 text-teal-700 text-xs rounded-full">
+                              {activity}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </Link>

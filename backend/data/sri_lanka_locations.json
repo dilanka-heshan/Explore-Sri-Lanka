@@ -1,0 +1,669 @@
+{
+  "sri_lanka_travel_locations": [
+    {
+      "name": "Unawatuna Beach",
+      "category": "Beaches",
+      "location": "Galle District, Southern Province",
+      "latitude": 6.0108,
+      "longitude": 80.2506
+    },
+    {
+      "name": "Mirissa Beach",
+      "category": "Beaches",
+      "location": "Matara District, Southern Province",
+      "latitude": 5.9485,
+      "longitude": 80.4585
+    },
+    {
+      "name": "Arugam Bay",
+      "category": "Beaches",
+      "location": "Ampara District, Eastern Province",
+      "latitude": 6.8408,
+      "longitude": 81.8344
+    },
+    {
+      "name": "Tangalle Beach",
+      "category": "Beaches",
+      "location": "Hambantota District, Southern Province",
+      "latitude": 6.0236,
+      "longitude": 80.7925
+    },
+    {
+      "name": "Nilaveli Beach",
+      "category": "Beaches",
+      "location": "Trincomalee District, Eastern Province",
+      "latitude": 8.7042,
+      "longitude": 81.1867
+    },
+    {
+      "name": "Hikkaduwa Beach",
+      "category": "Beaches",
+      "location": "Galle District, Southern Province",
+      "latitude": 6.1407,
+      "longitude": 80.1010
+    },
+    {
+      "name": "Trincomalee Beach",
+      "category": "Beaches",
+      "location": "Trincomalee District, Eastern Province",
+      "latitude": 8.5874,
+      "longitude": 81.2152
+    },
+    {
+      "name": "Bentota Beach",
+      "category": "Beaches",
+      "location": "Galle District, Southern Province",
+      "latitude": 6.4258,
+      "longitude": 79.9993
+    },
+    {
+      "name": "Pasikuda Beach",
+      "category": "Beaches",
+      "location": "Batticaloa District, Eastern Province",
+      "latitude": 7.9375,
+      "longitude": 81.5583
+    },
+    {
+      "name": "Kalpitiya Beach",
+      "category": "Beaches",
+      "location": "Puttalam District, North Western Province",
+      "latitude": 8.2333,
+      "longitude": 79.7667
+    },
+    {
+      "name": "Weligama Beach",
+      "category": "Beaches",
+      "location": "Matara District, Southern Province",
+      "latitude": 5.9750,
+      "longitude": 80.4292
+    },
+    {
+      "name": "Kitulgala (White Water Rafting)",
+      "category": "Adventure Activities",
+      "location": "Kegalle District, Sabaragamuwa Province",
+      "latitude": 6.9889,
+      "longitude": 80.4175
+    },
+    {
+      "name": "Ella (Zip Line)",
+      "category": "Adventure Activities",
+      "location": "Badulla District, Uva Province",
+      "latitude": 6.8667,
+      "longitude": 81.0458
+    },
+    {
+      "name": "Knuckles Five Peaks Mountain (Trekking)",
+      "category": "Adventure Activities",
+      "location": "Matale/Kandy Districts, Central Province",
+      "latitude": 7.4500,
+      "longitude": 80.7833
+    },
+    {
+      "name": "Pidurangala Rock (Hiking)",
+      "category": "Adventure Activities",
+      "location": "Matale District, Central Province",
+      "latitude": 7.9667,
+      "longitude": 80.7500
+    },
+    {
+      "name": "Sigiriya Rock Fortress (Climbing)",
+      "category": "Adventure Activities",
+      "location": "Matale District, Central Province",
+      "latitude": 7.9572,
+      "longitude": 80.7603
+    },
+    {
+      "name": "Adam's Peak (Hiking)",
+      "category": "Adventure Activities",
+      "location": "Ratnapura District, Sabaragamuwa Province",
+      "latitude": 6.8094,
+      "longitude": 80.4997
+    },
+    {
+      "name": "Horton Plains (Trekking)",
+      "category": "Adventure Activities",
+      "location": "Nuwara Eliya District, Central Province",
+      "latitude": 6.8064,
+      "longitude": 80.7956
+    },
+    {
+      "name": "Pallewela Falls (Canyoning)",
+      "category": "Adventure Activities",
+      "location": "Kandy District, Central Province",
+      "latitude": 7.2889,
+      "longitude": 80.6333
+    },
+    {
+      "name": "Yala National Park (Camping)",
+      "category": "Adventure Activities",
+      "location": "Hambantota/Monaragala Districts, Southern/Uva Provinces",
+      "latitude": 6.3700,
+      "longitude": 81.5200
+    },
+    {
+      "name": "Gal Oya National Park (Boat Safari)",
+      "category": "Adventure Activities",
+      "location": "Ampara District, Eastern Province",
+      "latitude": 7.2167,
+      "longitude": 81.3500
+    },
+    {
+      "name": "Abseiling Locations (Babarakanda Ella, Lanka Ella, Sadun Ella)",
+      "category": "Adventure Activities",
+      "location": "Various districts",
+      "latitude": 6.8333,
+      "longitude": 80.9167
+    },
+    {
+      "name": "Yala National Park",
+      "category": "Wildlife Sanctuaries",
+      "location": "Hambantota/Monaragala Districts",
+      "latitude": 6.3700,
+      "longitude": 81.5200
+    },
+    {
+      "name": "Udawalawe National Park",
+      "category": "Wildlife Sanctuaries",
+      "location": "Ratnapura/Monaragala Districts",
+      "latitude": 6.4333,
+      "longitude": 80.8833
+    },
+    {
+      "name": "Wilpattu National Park",
+      "category": "Wildlife Sanctuaries",
+      "location": "Puttalam/Anuradhapura Districts",
+      "latitude": 8.5167,
+      "longitude": 80.0333
+    },
+    {
+      "name": "Bundala National Park",
+      "category": "Wildlife Sanctuaries",
+      "location": "Hambantota District",
+      "latitude": 6.1975,
+      "longitude": 81.2019
+    },
+    {
+      "name": "Minneriya National Park",
+      "category": "Wildlife Sanctuaries",
+      "location": "Polonnaruwa District",
+      "latitude": 8.0167,
+      "longitude": 80.8833
+    },
+    {
+      "name": "Kaudulla National Park",
+      "category": "Wildlife Sanctuaries",
+      "location": "Polonnaruwa District",
+      "latitude": 8.1833,
+      "longitude": 80.8500
+    },
+    {
+      "name": "Sinharaja Forest Reserve",
+      "category": "Wildlife Sanctuaries",
+      "location": "Sabaragamuwa/Southern Provinces",
+      "latitude": 6.4000,
+      "longitude": 80.4000
+    },
+    {
+      "name": "Gal Oya National Park",
+      "category": "Wildlife Sanctuaries",
+      "location": "Ampara District",
+      "latitude": 7.2167,
+      "longitude": 81.3500
+    },
+    {
+      "name": "Kumana National Park",
+      "category": "Wildlife Sanctuaries",
+      "location": "Ampara District",
+      "latitude": 6.5833,
+      "longitude": 81.6833
+    },
+    {
+      "name": "Horton Plains National Park",
+      "category": "Wildlife Sanctuaries",
+      "location": "Nuwara Eliya District",
+      "latitude": 6.8064,
+      "longitude": 80.7956
+    },
+    {
+      "name": "Wasgamuwa National Park",
+      "category": "Wildlife Sanctuaries",
+      "location": "Matale/Polonnaruwa Districts",
+      "latitude": 7.7333,
+      "longitude": 80.9333
+    },
+    {
+      "name": "Kandy to Ella",
+      "category": "Scenic Train Rides",
+      "location": "Central to Uva Province",
+      "latitude": 7.2906,
+      "longitude": 80.6337
+    },
+    {
+      "name": "Colombo to Badulla",
+      "category": "Scenic Train Rides",
+      "location": "Western to Uva Province",
+      "latitude": 6.9271,
+      "longitude": 79.8612
+    },
+    {
+      "name": "Nuwara Eliya to Ella",
+      "category": "Scenic Train Rides",
+      "location": "Central to Uva Province",
+      "latitude": 6.9497,
+      "longitude": 80.7891
+    },
+    {
+      "name": "Galle to Matara",
+      "category": "Scenic Train Rides",
+      "location": "Southern Province coast",
+      "latitude": 6.0535,
+      "longitude": 80.2210
+    },
+    {
+      "name": "Sigiriya Rock Fortress",
+      "category": "Cultural Heritage Sites",
+      "location": "Matale District, Central Province",
+      "latitude": 7.9572,
+      "longitude": 80.7603
+    },
+    {
+      "name": "Dambulla Cave Temple",
+      "category": "Cultural Heritage Sites",
+      "location": "Matale District, Central Province",
+      "latitude": 7.8567,
+      "longitude": 80.6489
+    },
+    {
+      "name": "Polonnaruwa Ancient City",
+      "category": "Cultural Heritage Sites",
+      "location": "Polonnaruwa District, North Central Province",
+      "latitude": 7.9403,
+      "longitude": 81.0188
+    },
+    {
+      "name": "Anuradhapura Sacred City",
+      "category": "Cultural Heritage Sites",
+      "location": "Anuradhapura District, North Central Province",
+      "latitude": 8.3114,
+      "longitude": 80.4037
+    },
+    {
+      "name": "Temple of the Tooth (Kandy)",
+      "category": "Cultural Heritage Sites",
+      "location": "Kandy District, Central Province",
+      "latitude": 7.2931,
+      "longitude": 80.6414
+    },
+    {
+      "name": "Diyaluma Falls",
+      "category": "Waterfalls",
+      "location": "Badulla District, Uva Province",
+      "latitude": 6.7200,
+      "longitude": 80.9333
+    },
+    {
+      "name": "Bambarakanda Falls",
+      "category": "Waterfalls",
+      "location": "Badulla District, Uva Province",
+      "latitude": 6.7500,
+      "longitude": 80.8167
+    },
+    {
+      "name": "Ravana Falls",
+      "category": "Waterfalls",
+      "location": "Badulla District, Uva Province",
+      "latitude": 6.8728,
+      "longitude": 81.0553
+    },
+    {
+      "name": "Dunhinda Falls",
+      "category": "Waterfalls",
+      "location": "Badulla District, Uva Province",
+      "latitude": 6.9833,
+      "longitude": 81.0500
+    },
+    {
+      "name": "Baker's Falls",
+      "category": "Waterfalls",
+      "location": "Nuwara Eliya District, Central Province",
+      "latitude": 6.8064,
+      "longitude": 80.7956
+    },
+    {
+      "name": "St. Clair's Falls",
+      "category": "Waterfalls",
+      "location": "Nuwara Eliya District, Central Province",
+      "latitude": 6.8667,
+      "longitude": 80.7667
+    },
+    {
+      "name": "Adam's Peak (Sri Pada)",
+      "category": "Mountains",
+      "location": "Ratnapura District, Sabaragamuwa Province",
+      "latitude": 6.8094,
+      "longitude": 80.4997
+    },
+    {
+      "name": "Pidurutalagala",
+      "category": "Mountains",
+      "location": "Nuwara Eliya District, Central Province",
+      "latitude": 6.9822,
+      "longitude": 80.7733
+    },
+    {
+      "name": "Kirigalpotta",
+      "category": "Mountains",
+      "location": "Nuwara Eliya District, Central Province",
+      "latitude": 6.7833,
+      "longitude": 80.7833
+    },
+    {
+      "name": "Knuckles Mountain Range",
+      "category": "Mountains",
+      "location": "Matale/Kandy Districts, Central Province",
+      "latitude": 7.4500,
+      "longitude": 80.7833
+    },
+    {
+      "name": "Ella Rock",
+      "category": "Mountains",
+      "location": "Badulla District, Uva Province",
+      "latitude": 6.8667,
+      "longitude": 81.0458
+    },
+    {
+      "name": "Little Adam's Peak",
+      "category": "Mountains",
+      "location": "Badulla District, Uva Province",
+      "latitude": 6.8667,
+      "longitude": 81.0458
+    },
+    {
+      "name": "Bible Rock (Bathalegala)",
+      "category": "Mountains",
+      "location": "Kandy District, Central Province",
+      "latitude": 7.3167,
+      "longitude": 80.6833
+    },
+    {
+      "name": "Sinharaja Forest Reserve",
+      "category": "Rainforests",
+      "location": "Sabaragamuwa/Southern Provinces",
+      "latitude": 6.4000,
+      "longitude": 80.4000
+    },
+    {
+      "name": "Kanneliya Rainforest",
+      "category": "Rainforests",
+      "location": "Galle District, Southern Province",
+      "latitude": 6.2500,
+      "longitude": 80.3500
+    },
+    {
+      "name": "Makandawa Rainforest (Kitulgala)",
+      "category": "Rainforests",
+      "location": "Kegalle District, Sabaragamuwa Province",
+      "latitude": 6.9889,
+      "longitude": 80.4175
+    },
+    {
+      "name": "Knuckles Forest Reserve",
+      "category": "Rainforests",
+      "location": "Matale/Kandy Districts, Central Province",
+      "latitude": 7.4500,
+      "longitude": 80.7833
+    },
+    {
+      "name": "Nuwara Eliya Tea Plantations",
+      "category": "Tea Plantations",
+      "location": "Nuwara Eliya District, Central Province",
+      "latitude": 6.9497,
+      "longitude": 80.7891
+    },
+    {
+      "name": "Pedro Tea Estate",
+      "category": "Tea Plantations",
+      "location": "Nuwara Eliya District, Central Province",
+      "latitude": 6.9497,
+      "longitude": 80.7891
+    },
+    {
+      "name": "Mackwoods Labookellie Tea Estate",
+      "category": "Tea Plantations",
+      "location": "Nuwara Eliya District, Central Province",
+      "latitude": 6.9497,
+      "longitude": 80.7891
+    },
+    {
+      "name": "Haputale Tea Plantations",
+      "category": "Tea Plantations",
+      "location": "Badulla District, Uva Province",
+      "latitude": 6.7667,
+      "longitude": 80.9500
+    },
+    {
+      "name": "Dambatenne Tea Factory",
+      "category": "Tea Plantations",
+      "location": "Badulla District, Uva Province",
+      "latitude": 6.7667,
+      "longitude": 80.9500
+    },
+    {
+      "name": "Arugam Bay",
+      "category": "Surfing Spots",
+      "location": "Ampara District, Eastern Province",
+      "latitude": 6.8408,
+      "longitude": 81.8344
+    },
+    {
+      "name": "Weligama Beach",
+      "category": "Surfing Spots",
+      "location": "Matara District, Southern Province",
+      "latitude": 5.9750,
+      "longitude": 80.4292
+    },
+    {
+      "name": "Hiriketiya Beach",
+      "category": "Surfing Spots",
+      "location": "Matara District, Southern Province",
+      "latitude": 5.9667,
+      "longitude": 80.4667
+    },
+    {
+      "name": "Hikkaduwa Beach",
+      "category": "Surfing Spots",
+      "location": "Galle District, Southern Province",
+      "latitude": 6.1407,
+      "longitude": 80.1010
+    },
+    {
+      "name": "Horton Plains (World's End)",
+      "category": "Hiking Trails",
+      "location": "Nuwara Eliya District, Central Province",
+      "latitude": 6.8064,
+      "longitude": 80.7956
+    },
+    {
+      "name": "Devil's Staircase (Ohiya)",
+      "category": "Hiking Trails",
+      "location": "Badulla District, Uva Province",
+      "latitude": 6.8167,
+      "longitude": 80.8333
+    },
+    {
+      "name": "Namunukula Trail",
+      "category": "Hiking Trails",
+      "location": "Badulla District, Uva Province",
+      "latitude": 6.9333,
+      "longitude": 81.1000
+    },
+    {
+      "name": "Gangaramaya Temple (Colombo)",
+      "category": "Historical Temples",
+      "location": "Colombo District, Western Province",
+      "latitude": 6.9167,
+      "longitude": 79.8583
+    },
+    {
+      "name": "Kelaniya Raja Maha Vihara",
+      "category": "Historical Temples",
+      "location": "Gampaha District, Western Province",
+      "latitude": 6.9558,
+      "longitude": 79.9217
+    },
+    {
+      "name": "Kataragama Temple",
+      "category": "Historical Temples",
+      "location": "Monaragala District, Uva Province",
+      "latitude": 6.4139,
+      "longitude": 81.3344
+    },
+    {
+      "name": "Isurumuniya Temple",
+      "category": "Historical Temples",
+      "location": "Anuradhapura District, North Central Province",
+      "latitude": 8.3353,
+      "longitude": 80.3964
+    },
+    {
+      "name": "Galle Fort",
+      "category": "Colonial Architecture",
+      "location": "Galle District, Southern Province",
+      "latitude": 6.0261,
+      "longitude": 80.2169
+    },
+    {
+      "name": "Dutch Hospital (Colombo)",
+      "category": "Colonial Architecture",
+      "location": "Colombo District, Western Province",
+      "latitude": 6.9344,
+      "longitude": 79.8428
+    },
+    {
+      "name": "Queen's Hotel (Kandy)",
+      "category": "Colonial Architecture",
+      "location": "Kandy District, Central Province",
+      "latitude": 7.2931,
+      "longitude": 80.6414
+    },
+    {
+      "name": "Wolvendaal Church (Colombo)",
+      "category": "Colonial Architecture",
+      "location": "Colombo District, Western Province",
+      "latitude": 6.9344,
+      "longitude": 79.8428
+    },
+    {
+      "name": "Santani Wellness Resort (Kandy)",
+      "category": "Ayurvedic Spas",
+      "location": "Kandy District, Central Province",
+      "latitude": 7.2906,
+      "longitude": 80.6337
+    },
+    {
+      "name": "Barberyn Reef Ayurveda Resort (Beruwala)",
+      "category": "Ayurvedic Spas",
+      "location": "Kalutara District, Western Province",
+      "latitude": 6.4792,
+      "longitude": 79.9819
+    },
+    {
+      "name": "Siddhalepa Ayurveda Health Resort (Wadduwa)",
+      "category": "Ayurvedic Spas",
+      "location": "Kalutara District, Western Province",
+      "latitude": 6.6658,
+      "longitude": 79.9297
+    },
+    {
+      "name": "Shangri-La's Hambantota Golf Resort & Spa",
+      "category": "Luxury Resorts",
+      "location": "Hambantota District, Southern Province",
+      "latitude": 6.1244,
+      "longitude": 81.1185
+    },
+    {
+      "name": "Amanwella (Tangalle)",
+      "category": "Luxury Resorts",
+      "location": "Hambantota District, Southern Province",
+      "latitude": 6.0236,
+      "longitude": 80.7925
+    },
+    {
+      "name": "Ceylon Tea Trails (Hatton)",
+      "category": "Luxury Resorts",
+      "location": "Nuwara Eliya District, Central Province",
+      "latitude": 6.8908,
+      "longitude": 80.5981
+    },
+    {
+      "name": "Wild Coast Tented Lodge (Yala)",
+      "category": "Luxury Resorts",
+      "location": "Hambantota District, Southern Province",
+      "latitude": 6.3700,
+      "longitude": 81.5200
+    },
+    {
+      "name": "Mirissa",
+      "category": "Whale Watching Locations",
+      "location": "Matara District, Southern Province",
+      "latitude": 5.9485,
+      "longitude": 80.4585
+    },
+    {
+      "name": "Trincomalee",
+      "category": "Whale Watching Locations",
+      "location": "Trincomalee District, Eastern Province",
+      "latitude": 8.5874,
+      "longitude": 81.2152
+    },
+    {
+      "name": "Kalpitiya",
+      "category": "Whale Watching Locations",
+      "location": "Puttalam District, North Western Province",
+      "latitude": 8.2333,
+      "longitude": 79.7667
+    },
+    {
+      "name": "Kandy Esala Perahera",
+      "category": "Cultural Festivals",
+      "location": "Kandy District, Central Province",
+      "latitude": 7.2906,
+      "longitude": 80.6337
+    },
+    {
+      "name": "Vesak Festival",
+      "category": "Cultural Festivals",
+      "location": "Nationwide",
+      "latitude": 7.8731,
+      "longitude": 80.7718
+    },
+    {
+      "name": "Kataragama Perahera Festival",
+      "category": "Cultural Festivals",
+      "location": "Monaragala District, Uva Province",
+      "latitude": 6.4139,
+      "longitude": 81.3344
+    },
+    {
+      "name": "Hiriwadunna Village Tour (Habarana)",
+      "category": "Village Life Experiences",
+      "location": "Anuradhapura District, North Central Province",
+      "latitude": 8.0333,
+      "longitude": 80.7500
+    },
+    {
+      "name": "Dambana Indigenous Village (Mahiyangana)",
+      "category": "Village Life Experiences",
+      "location": "Badulla District, Uva Province",
+      "latitude": 7.3333,
+      "longitude": 81.0000
+    },
+    {
+      "name": "Meemure Village (Knuckles)",
+      "category": "Village Life Experiences",
+      "location": "Kandy District, Central Province",
+      "latitude": 7.4500,
+      "longitude": 80.7833
+    }
+  ]
+}

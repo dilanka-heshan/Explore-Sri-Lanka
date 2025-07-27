@@ -1,0 +1,48 @@
+# Backend Framework
+fastapi==0.110.0
+uvicorn==0.29.0
+
+# LangGraph + LangChain (AI orchestration)
+langchain==0.3.20
+langgraph>=0.3.5
+langchain-google-genai>=2.1.8      # Gemini integration for embeddings + LLMs :contentReference[oaicite:1]{index=1}
+
+# Gemini API SDK
+google-genai==1.7.0                # Official SDK for embedding and chat models
+google-generativeai>=0.8.0         # Google Generative AI for Gemini models
+
+# Vector database (e.g. for RAG, search)
+qdrant-client==1.8.0
+
+# Embeddings (Hugging Face or alternatives if needed)
+sentence-transformers==2.7.0      # Optional fallback embedding models
+
+# Utilities & Config
+python-dotenv==1.0.1
+pydantic>=2.7.4,<3.0.0
+
+# Database (Supabase)
+SQLAlchemy==2.0.30
+supabase==2.3.4
+asyncpg==0.29.0  # For async PostgreSQL connection
+psycopg2-binary==2.9.9  # For PostgreSQL connection
+
+# Logging
+loguru==0.7.2
+
+# Monitoring / Observability (optional)
+langsmith>=0.3.45                # Updated for compatibility with langchain-core
+aiohttp
+pandas
+python-multipart
+pydantic[email]
+
+# Google Maps Places API
+googlemaps>=4.10.0
+
+# PDF Generation
+reportlab>=4.0.0
+Pillow>=10.0.0  # For image processing in PDFs
+
+# HTTP Requests (for fetching images, maps, etc.)
+requests>=2.31.0

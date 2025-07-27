@@ -2,6 +2,9 @@
 
 import Link from "next/link"
 import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "lucide-react"
+import ClientOnly from "./ClientOnly"
+import HydrationSafeInput from "./HydrationSafeInput"
+import HydrationSafeButton from "./HydrationSafeButton"
 
 export default function Footer() {
   return (
@@ -14,16 +17,18 @@ export default function Footer() {
             <p className="text-teal-100 mb-8 max-w-2xl mx-auto">
               Get the latest travel tips, destination guides, and exclusive offers delivered to your inbox.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-              />
-              <button className="bg-white text-teal-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200">
-                Subscribe
-              </button>
-            </div>
+            <ClientOnly>
+              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <HydrationSafeInput
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+                />
+                <HydrationSafeButton className="bg-white text-teal-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200">
+                  Subscribe
+                </HydrationSafeButton>
+              </div>
+            </ClientOnly>
           </div>
         </div>
       </div>
